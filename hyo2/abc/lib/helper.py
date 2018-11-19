@@ -74,7 +74,7 @@ class Helper:
     def is_pydro(cls) -> bool:
         try:
             # noinspection PyUnresolvedReferences
-            import HSTB
+            import HSTB as _
             return True
 
         except ImportError:
