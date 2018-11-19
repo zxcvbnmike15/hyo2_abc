@@ -7,7 +7,7 @@ ABC library
 |
 
 
-.. image:: https://api.codacy.com/project/badge/Grade/3a645cbbdd814838a41312ed1fc578be
+.. image:: https://api.codacy.com/project/badge/Grade/8b44e8012ba64cffa5e1488178085cf0
     :target: https://www.codacy.com/app/hydroffice/hyo2_abc/dashboard
     :alt: codacy
 
