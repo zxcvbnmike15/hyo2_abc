@@ -29,12 +29,25 @@ class TestABCLibHelper(unittest.TestCase):
         self.assertIsInstance(self.h.is_linux(), bool)
         self.assertIsInstance(self.h.is_windows(), bool)
 
-        self.assertNotEqual(self.h.is_darwin(), self.h.is_windows())
-        self.assertNotEqual(self.h.is_linux(), self.h.is_windows())
+        self.assertTrue(any([self.h.is_linux(), self.h.is_darwin(), self.h.is_windows()]))
 
     def test_is_pydro(self):
         self.assertIsInstance(self.h.is_pydro(), bool)
 
+    def test_is_url(self):
+        self.assertTrue("https://www.hydroffice.org")
+        self.assertFalse("http://fake/url")
+
+    def test_python_path(self):
+        self.assertTrue(os.path.exists(self.h.python_path()))
+
+    def test_package_info(self):
+        self.assertIsInstance(self.h.package_info(qt_html=True), str)
+        self.assertIsInstance(self.h.package_info(qt_html=False), str)
+
+    def test_package_folder(self):
+        self.assertTrue(os.path.exists(self.h.package_folder()))
+        
 
 def suite():
     s = unittest.TestSuite()
