@@ -1,4 +1,4 @@
-language: python
+language: c  # Travis-CI does not currently support Python and Mac OS X
 
 os:
   - linux
