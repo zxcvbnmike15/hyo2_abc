@@ -47,7 +47,7 @@ class TestABCLibHelper(unittest.TestCase):
 
     def test_package_folder(self):
         self.assertTrue(os.path.exists(self.h.package_folder()))
-        
+
 
 def suite():
     s = unittest.TestSuite()
