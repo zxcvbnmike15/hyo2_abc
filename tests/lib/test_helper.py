@@ -35,8 +35,8 @@ class TestABCLibHelper(unittest.TestCase):
         self.assertIsInstance(self.h.is_pydro(), bool)
 
     def test_is_url(self):
-        self.assertTrue("https://www.hydroffice.org")
-        self.assertFalse("http://fake/url")
+        self.assertTrue(self.h.is_url("https://www.hydroffice.org"))
+        self.assertFalse(self.h.is_url("http://fake/url"))
 
     def test_python_path(self):
         self.assertTrue(os.path.exists(self.h.python_path()))
