@@ -11,6 +11,10 @@ ABC library
     :target: https://www.codacy.com/app/hydroffice/hyo2_abc/dashboard
     :alt: codacy
 
+.. image:: https://coveralls.io/repos/github/hydroffice/hyo2_abc/badge.svg?branch=master
+    :target: https://coveralls.io/github/hydroffice/hyo2_abc?branch=master
+
+
 |
 
 * GitHub: `https://github.com/hydroffice/hyo2_abc <https://github.com/hydroffice/hyo2_abc>`_
@@ -45,3 +49,27 @@ The following wonderful people contributed directly or indirectly to this projec
 - `John Doe <mailto:john.doe@email.me>`_
 
 Please add yourself here alphabetically when you submit your first pull request.
+
+|
+
+Testing
+~~~~~~~
+
+For running tests and check the relative coverage:
+
+.. code-block::
+
+    coverage run --source hyo2 setup.py test
+
+To get the test coverage report:
+
+.. code-block::
+
+    coverage report -m
+
+and/or:
+
+.. code-block::
+
+    coverage html
+    open html_cov/index.html

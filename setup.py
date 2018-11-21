@@ -47,11 +47,12 @@ setup(
     zip_safe=False,
     setup_requires=[
         "setuptools",
-        "wheel"
+        "wheel",
     ],
     install_requires=[
         "appdirs",
         "bidict",
+        "coverage"
     ],
     python_requires='>=3.5',
     entry_points={
@@ -65,7 +66,7 @@ setup(
     description="Common elements for HydrOffice libraries and applications.",
     long_description=read(os.path.join(here, "README.rst")),
     url="https://www.hydroffice.org",
-    classifiesr=[  # https://pypi.python.org/pypi?%3Aaction=list_classifiers
+    classifiers=[  # https://pypi.python.org/pypi?%3Aaction=list_classifiers
         "Development Status :: 4 - Beta",
         "Intended Audience :: Science/Research",
         "Natural Language :: English",
