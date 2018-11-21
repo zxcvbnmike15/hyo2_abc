@@ -1,0 +1,61 @@
+version: 0.1.{build}-{branch}
+
+branches:
+  only:
+  - master
+
+environment:
+
+  matrix:
+
+    - PYTHON_VERSION: 3.6
+      PYTHON_ARCH: x64
+      MINICONDA: C:\Miniconda36-x64
+
+    - PYTHON_VERSION: 3.7
+      PYTHON_ARCH: x64
+      MINICONDA: C:\Miniconda36-x64
+
+matrix:
+
+  allow_failures:
+
+    - PYTHON_VERSION: 3.7
+      PYTHON_ARCH: x64
+      MINICONDA: C:\Miniconda36-x64
+
+install:
+  - set PATH=%MINICONDA%;%MINICONDA%\Scripts;%PATH%
+
+  # Install the build and runtime dependencies of the project.
+  - conda config --set always_yes yes --set changeps1 no
+  - conda update -q conda
+  - conda info -a
+  - conda create -q -n test-environment python=%PYTHON_VERSION%
+  - conda config --add channels conda-forge
+  - activate test-environment
+  - pip install wheel
+
+  # Check that we have the expected version of Python
+  - python --version
+
+  # Install dependencies
+  #- conda install -q cython scipy numpy basemap pyside matplotlib netCDF4 gdal pyproj pyserial pillow
+  #- pip install gsw==3.0.6
+
+  - pip install coveralls
+
+build: off
+build_script:
+  - pip install .
+
+test: off
+test_script:
+  - coverage run --source hyo2 setup.py test
+  - coverage report -m
+
+after_test:
+  - python setup.py bdist_wheel
+
+artifacts:
+  - path: dist\*

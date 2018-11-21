@@ -6,6 +6,13 @@ ABC library
 
 |
 
+.. image:: https://travis-ci.org/hydroffice/hyo2_abc.svg?branch=master
+    :target: https://travis-ci.org/hydroffice/hyo2_abc
+    :alt: travis-ci
+
+.. image:: https://ci.appveyor.com/api/projects/status/pf937dxph2600m6l?svg=true
+    :target: https://ci.appveyor.com/project/giumas/hyo2-abc
+    :alt: appveyor
 
 .. image:: https://api.codacy.com/project/badge/Grade/8b44e8012ba64cffa5e1488178085cf0
     :target: https://www.codacy.com/app/hydroffice/hyo2_abc/dashboard
@@ -13,7 +20,7 @@ ABC library
 
 .. image:: https://coveralls.io/repos/github/hydroffice/hyo2_abc/badge.svg?branch=master
     :target: https://coveralls.io/github/hydroffice/hyo2_abc?branch=master
-
+    :alt: coverall
 
 |
 
