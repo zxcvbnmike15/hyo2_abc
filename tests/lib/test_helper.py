@@ -12,8 +12,9 @@ class TestABCLibHelper(unittest.TestCase):
         self.h = Helper(lib_info=LibInfo())
 
     def test_explore_folder(self):
-        self.assertTrue(self.h.explore_folder(__file__))
-        self.assertFalse(self.h.explore_folder(__file__ + ".fake"))
+        if self.h.is_windows():  # since on Linux, opening a file hangs
+            self.assertTrue(self.h.explore_folder(__file__))
+            self.assertFalse(self.h.explore_folder(__file__ + ".fake"))
         self.assertTrue(self.h.explore_folder(os.path.dirname(__file__)))
         self.assertFalse(self.h.explore_folder(os.path.dirname(__file__) + "fake"))
 
