@@ -33,11 +33,7 @@ install:
   # Useful for debugging any issues with conda
   - conda info -a
 
-  - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      conda create -q -n test-environment python=$PYTHON_VERSION gdal;
-    else
-      conda create -q -n test-environment python=$PYTHON_VERSION gdal;
-    fi
+  - conda create -q -n test-environment python=$PYTHON_VERSION gdal
   - source activate test-environment
   - pip install .
   - pip install coveralls
