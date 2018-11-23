@@ -21,9 +21,9 @@ class AppInfo:
         self.app_path = os.path.abspath(os.path.dirname(__file__))
 
         self.app_url = "https://www.hydroffice.org/"
-        self.app_manual_url = "N/A"
+        self.app_manual_url = "https://www.hydroffice.org/manuals/soundspeed/index.html"
         self.app_support_email = "info@hydroffice.org"
-        self.app_latest_url = "N/A"
+        self.app_latest_url = "https://www.hydroffice.org/latest/sondspeed.txt"
 
         # additional AppInfo-specific variables
 
@@ -31,3 +31,6 @@ class AppInfo:
         self.app_main_window_object_name = "MainWindow"
         self.app_license_path = os.path.join(self.app_media_path, "LICENSE")
         self.app_icon_path = os.path.join(self.app_media_path, "app_icon.png")
+
+        self.app_tabs_icon_size = 36
+        self.app_toolbars_icon_size = 24
