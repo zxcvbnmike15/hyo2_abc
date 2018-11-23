@@ -1,4 +1,4 @@
-language: c  # Travis-CI does not currently support Python and Mac OS X
+language: cpp  # Travis-CI does not currently support Python and Mac OS X
 
 os:
   - linux
@@ -34,7 +34,7 @@ install:
   - conda info -a
 
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
-      conda create -q -n test-environment python=$PYTHON_VERSION gdal libstdcxx-ng;
+      conda create -q -n test-environment python=$PYTHON_VERSION gdal;
     else
       conda create -q -n test-environment python=$PYTHON_VERSION gdal;
     fi
