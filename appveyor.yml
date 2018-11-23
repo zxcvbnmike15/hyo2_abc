@@ -44,6 +44,7 @@ install:
   #- pip install gsw==3.0.6
 
   - pip install coveralls
+  - conda list --show-channel-urls
 
 build: off
 build_script:
