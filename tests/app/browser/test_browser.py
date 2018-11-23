@@ -1,5 +1,5 @@
 import unittest
-import time
+import os
 
 from PySide2.QtCore import (Qt, QPoint)
 from PySide2.QtWidgets import (
@@ -7,10 +7,11 @@ from PySide2.QtWidgets import (
 )
 from PySide2.QtTest import QTest
 
-import logging
-logging.basicConfig(level=logging.DEBUG)
+# import logging
+# logging.basicConfig(level=logging.DEBUG)
 
 from hyo2.abc.app.browser.browser import Browser
+from hyo2.abc.lib.helper import Helper
 
 
 class TestAppBrowserBrowser(unittest.TestCase):
