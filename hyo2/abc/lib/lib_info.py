@@ -22,3 +22,9 @@ class LibInfo:
         self.lib_manual_url = "N/A"
         self.lib_support_email = "info@hydroffice.org"
         self.lib_latest_url = "N/A"
+
+        self.lib_dep_dict = {
+            "gdal": "osgeo",
+            "numpy": "numpy",
+            "PySide2": "PySide2"
+        }

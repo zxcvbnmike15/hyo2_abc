@@ -172,11 +172,8 @@ class Helper:
         msg += style_row("pydro: %s" % self.is_pydro())
 
         msg += style_row("Dependencies", is_h2=True)
-        msg += style_row("gdal: %s" % (package_version("osgeo"), ))
-        msg += style_row("numpy: %s" % (package_version("numpy"), ))
-        msg += style_row("pyproj: %s" % (package_version("pyproj"), ))
-        msg += style_row("h5py: %s" % (package_version("h5py"), ))
-        msg += style_row("PySide2: %s" % (package_version("PySide2"), ))
+        for key in self._li.lib_dep_dict.keys():
+            msg += style_row("%s: %s" % (key, package_version(self._li.lib_dep_dict[key]), ))
 
         return msg
 
