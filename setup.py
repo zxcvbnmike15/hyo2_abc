@@ -52,7 +52,8 @@ setup(
     install_requires=[
         "appdirs",
         "bidict",
-        "coverage"
+        "coverage",
+        "PySide2"
     ],
     python_requires='>=3.5',
     entry_points={

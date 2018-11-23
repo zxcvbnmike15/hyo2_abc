@@ -1,9 +1,8 @@
 import sys
 from PySide2 import QtCore
 from PySide2.QtCore import QDir, QFileInfo, QStandardPaths, Qt, QUrl
-from PySide2.QtGui import QDesktopServices
-from PySide2.QtWidgets import (QAction, QLabel, QMenu, QProgressBar,
-    QStyleFactory, QWidget)
+from PySide2.QtGui import QDesktopServices, QMouseEvent
+from PySide2.QtWidgets import QMenu, QProgressBar, QStyleFactory
 from PySide2.QtWebEngineWidgets import QWebEngineDownloadItem
 
 
@@ -11,11 +10,14 @@ class DownloadWidget(QProgressBar):
     finished = QtCore.Signal()
     remove_requested = QtCore.Signal()
 
-    def __init__(self, download_item):
+    def __init__(self, download_item: QWebEngineDownloadItem) -> None:
         super(DownloadWidget, self).__init__()
         self._download_item = download_item
+        # noinspection PyUnresolvedReferences
         download_item.finished.connect(self._finished)
+        # noinspection PyUnresolvedReferences
         download_item.downloadProgress.connect(self._download_progress)
+        # noinspection PyUnresolvedReferences
         download_item.stateChanged.connect(self._update_tool_tip())
         path = download_item.path()
 
@@ -42,24 +44,25 @@ class DownloadWidget(QProgressBar):
         # noinspection PyUnresolvedReferences
         self.customContextMenuRequested.connect(self.context_menu_event)
 
-    @staticmethod
-    def open_file(file):
+    @classmethod
+    def open_file(cls, file: str) -> None:
+        # noinspection PyTypeChecker,PyCallByClass
         QDesktopServices.openUrl(QUrl.fromLocalFile(file))
 
-    @staticmethod
-    def open_download_directory():
+    @classmethod
+    def open_download_directory(cls) -> None:
         path = QStandardPaths.writableLocation(QStandardPaths.DownloadLocation)
-        DownloadWidget.open_file(path)
+        cls.open_file(path)
 
-    def _finished(self):
+    def _finished(self) -> None:
         self._update_tool_tip()
         # noinspection PyUnresolvedReferences
         self.finished.emit()
 
-    def _download_progress(self, bytes_received, bytes_total):
+    def _download_progress(self, bytes_received: int, bytes_total: int) -> None:
         self.setValue(int(100 * bytes_received / bytes_total))
 
-    def _update_tool_tip(self):
+    def _update_tool_tip(self) -> None:
         path = self._download_item.path()
         tool_tip = "{}\n{}".format(self._download_item.url().toString(),
                                    QDir.toNativeSeparators(path))
@@ -80,14 +83,17 @@ class DownloadWidget(QProgressBar):
 
         self.setToolTip(tool_tip)
 
-    def _launch(self):
-        DownloadWidget.open_file(self._download_item.path())
+    def _launch(self) -> None:
+        self.open_file(self._download_item.path())
 
-    def mouse_double_click_event(self, event):
+    def mouseDoubleClickEvent(self, event: QMouseEvent) -> None:
+
         if self._download_item.state() == QWebEngineDownloadItem.DownloadCompleted:
             self._launch()
 
-    def context_menu_event(self, event):
+        event.ignore()
+
+    def context_menu_event(self, event: QMouseEvent) -> None:
         state = self._download_item.state()
         context_menu = QMenu()
         launch_action = context_menu.addAction("Launch")
@@ -103,7 +109,7 @@ class DownloadWidget(QProgressBar):
         if chosen_action == launch_action:
             self._launch()
         elif chosen_action == show_in_folder_action:
-            DownloadWidget.open_file(QFileInfo(self._download_item.path()).absolutePath())
+            self.open_file(QFileInfo(self._download_item.path()).absolutePath())
         elif chosen_action == cancel_action:
             self._download_item.cancel()
         elif chosen_action == remove_action:

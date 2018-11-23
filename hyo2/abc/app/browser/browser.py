@@ -48,7 +48,7 @@ class Browser(QMainWindow):
         # self.view.load(QUrl(url))
         self.change_url(url=url)
 
-    def _create_menu(self):
+    def _create_menu(self) -> None:
         style_icons = ':/qt-project.org/styles/commonstyle/images/'
 
         # noinspection PyCallByClass,PyTypeChecker
@@ -93,7 +93,7 @@ class Browser(QMainWindow):
     def _url_changed(self, url: QUrl) -> None:
         self.address_line_edit.setText(url.toString())
 
-    def _download_requested(self, item) -> None:
+    def _download_requested(self, item: QWebEngineDownloadItem) -> None:
 
         # Remove old downloads before opening a new one
         for old_download in self.statusBar().children():
