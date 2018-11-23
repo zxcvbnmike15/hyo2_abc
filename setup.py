@@ -53,7 +53,8 @@ setup(
         "appdirs",
         "bidict",
         "coverage",
-        "PySide2"
+        "PySide2",
+        "gdal"
     ],
     python_requires='>=3.5',
     entry_points={
