@@ -18,7 +18,6 @@ from hyo2.abc.app.app_info import AppInfo
 
 class TestAppAboutDialog(unittest.TestCase):
 
-    @unittest.expectedFailure
     def test_visibility(self):
 
         if not qApp:
@@ -29,7 +28,6 @@ class TestAppAboutDialog(unittest.TestCase):
         d.switch_visible()
         d.switch_visible()
 
-    @unittest.expectedFailure
     def test_with_all_tabs(self):
 
         if not qApp:
