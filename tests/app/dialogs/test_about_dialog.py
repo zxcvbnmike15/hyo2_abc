@@ -1,8 +1,6 @@
 import unittest
 
-from PySide2.QtWidgets import (
-    QApplication, qApp
-)
+from PySide2 import QtWidgets
 
 # import logging
 # logging.basicConfig(level=logging.DEBUG)
@@ -20,8 +18,8 @@ class TestAppAboutDialog(unittest.TestCase):
 
     def test_visibility(self):
 
-        if not qApp:
-            QApplication([])
+        if not QtWidgets.qApp:
+            QtWidgets.QApplication([])
 
         d = AboutDialog(lib_info=LibInfo(), app_info=AppInfo())
         d.show()
@@ -30,8 +28,8 @@ class TestAppAboutDialog(unittest.TestCase):
 
     def test_with_all_tabs(self):
 
-        if not qApp:
-            QApplication([])
+        if not QtWidgets.qApp:
+            QtWidgets.QApplication([])
 
         d = AboutDialog(lib_info=LibInfo(), app_info=AppInfo(),
                         with_gdal_tab=True, with_locale_tab=True)
@@ -42,8 +40,8 @@ class TestAppAboutDialogGeneralInfoTab(unittest.TestCase):
 
     def test_visibility(self):
 
-        if not qApp:
-            QApplication([])
+        if not QtWidgets.qApp:
+            QtWidgets.QApplication([])
 
         t = GeneralInfoTab(lib_info=LibInfo())
         t.show()
@@ -53,8 +51,8 @@ class TestAppAboutDialogLicenseTab(unittest.TestCase):
 
     def test_visibility(self):
 
-        if not qApp:
-            QApplication([])
+        if not QtWidgets.qApp:
+            QtWidgets.QApplication([])
 
         t = LicenseTab(app_info=AppInfo())
         t.show()
@@ -64,8 +62,8 @@ class TestAppAboutDialogLocalEnvironmentTab(unittest.TestCase):
 
     def test_visibility(self):
 
-        if not qApp:
-            QApplication([])
+        if not QtWidgets.qApp:
+            QtWidgets.QApplication([])
 
         t = LocalEnvironmentTab()
         t.show()
@@ -75,8 +73,8 @@ class TestAppAboutDialogGdalInfoTab(unittest.TestCase):
 
     def test_visibility(self):
 
-        if not qApp:
-            QApplication([])
+        if not QtWidgets.qApp:
+            QtWidgets.QApplication([])
 
         t = GdalInfoTab()
         t.show()
