@@ -18,7 +18,7 @@ class LibInfo:
 
         self.lib_path = os.path.abspath(os.path.dirname(__file__))
 
-        self.lib_url = "https://www.hydroffice.org/"
+        self.lib_url = "https://www.hydroffice.org/abc/"
         self.lib_manual_url = "N/A"
         self.lib_support_email = "info@hydroffice.org"
         self.lib_latest_url = "N/A"

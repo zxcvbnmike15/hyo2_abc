@@ -1,4 +1,5 @@
 from typing import Optional
+import os
 import logging
 
 from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
@@ -6,6 +7,8 @@ from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 logger = logging.getLogger(__name__)
 
 from hyo2.abc.app.widgets.browser.download_widget import DownloadWidget
+from hyo2.abc.lib.lib_info import LibInfo
+from hyo2.abc.lib.helper import Helper
 
 
 class Browser(QtWidgets.QMainWindow):
@@ -32,16 +35,37 @@ class Browser(QtWidgets.QMainWindow):
         self._tool_bar.addWidget(self.address_line_edit)
 
         self.view = QtWebEngineWidgets.QWebEngineView()
-        page = self.view.page()
-        page.titleChanged.connect(self.setWindowTitle)
-        page.urlChanged.connect(self._url_changed)
-        page.profile().downloadRequested.connect(self._download_requested)
-        self.view.setPage(page)
+        # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.PluginsEnabled, True)
+        # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.FullScreenSupportEnabled, True)
+        # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.AllowRunningInsecureContent, True)
+        # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.SpatialNavigationEnabled, True)
+        # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.JavascriptEnabled, True)
+        # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.JavascriptCanOpenWindows, True)
+        # self.interceptor = RequestInterceptor()
+        self.profile = QtWebEngineWidgets.QWebEngineProfile()
+        # self.profile.setRequestInterceptor(self.interceptor)
+        # noinspection PyUnresolvedReferences
+        self.profile.downloadRequested.connect(self._download_requested)
+        self.profile.setPersistentCookiesPolicy(QtWebEngineWidgets.QWebEngineProfile.NoPersistentCookies)
+        self.profile.setHttpCacheType(QtWebEngineWidgets.QWebEngineProfile.NoCache)
+        self.profile.setPersistentStoragePath(self._web_engine_folder())
+        self.page = QtWebEngineWidgets.QWebEnginePage(self.profile, self.view)
+        self.view.setPage(self.page)
+
+        # noinspection PyUnresolvedReferences
+        self.view.page().titleChanged.connect(self.setWindowTitle)
+        # noinspection PyUnresolvedReferences
+        self.view.page().urlChanged.connect(self._url_changed)
         self.setCentralWidget(self.view)
 
-        # self.addressLineEdit.setText(url)
-        # self.view.load(QUrl(url))
         self.change_url(url=url)
+
+    @classmethod
+    def _web_engine_folder(cls) -> str:
+        dir_path = os.path.abspath(os.path.join(Helper(lib_info=LibInfo()).hydroffice_folder(), "WebEngine"))
+        if not os.path.exists(dir_path):  # create it if it does not exist
+            os.makedirs(dir_path)
+        return dir_path
 
     def _create_menu(self) -> None:
         style_icons = ':/qt-project.org/styles/commonstyle/images/'

@@ -183,3 +183,6 @@ class Helper:
             os.makedirs(_dir)
 
         return _dir
+
+    def hydroffice_folder(self):
+        return os.path.abspath(os.path.join(self.package_folder(), os.pardir))

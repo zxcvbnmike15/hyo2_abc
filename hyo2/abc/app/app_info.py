@@ -20,10 +20,10 @@ class AppInfo:
 
         self.app_path = os.path.abspath(os.path.dirname(__file__))
 
-        self.app_url = "https://www.hydroffice.org/"
-        self.app_manual_url = "https://www.hydroffice.org/manuals/soundspeed/index.html"
+        self.app_url = "https://www.hydroffice.org/abc/"
+        self.app_manual_url = "https://www.hydroffice.org/manuals/abc/index.html"
         self.app_support_email = "info@hydroffice.org"
-        self.app_latest_url = "https://www.hydroffice.org/latest/sondspeed.txt"
+        self.app_latest_url = "https://www.hydroffice.org/latest/abc.txt"
 
         # additional AppInfo-specific variables
 
