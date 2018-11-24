@@ -13,7 +13,7 @@ def set_logging(default_logging=logging.WARNING, hyo2_logging=logging.INFO, abc_
         format="%(levelname)-9s %(name)s.%(funcName)s:%(lineno)d > %(message)s"
     )
     logging.getLogger("hyo2").setLevel(hyo2_logging)
-    logging.getLogger("hyo2.figleaf").setLevel(abc_logging)
+    logging.getLogger("hyo2.abc").setLevel(abc_logging)
 
 
 set_logging()
@@ -27,7 +27,7 @@ app.setStyleSheet(AppStyle.load_stylesheet())
 
 mw = QtWidgets.QMainWindow()
 mw.setObjectName(app_info.app_main_window_object_name)
-mw.setWindowTitle('%s v.%s ALPHA' % (app_info.app_name, app_info.app_version))
+mw.setWindowTitle('%s v.%s' % (app_info.app_name, app_info.app_version))
 mw.setWindowIcon(QtGui.QIcon(app_info.app_icon_path))
 
 tabs = QtWidgets.QTabWidget()

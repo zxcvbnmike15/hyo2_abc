@@ -2,6 +2,7 @@ import os
 
 from hyo2.abc import name
 from hyo2.abc import __version__
+from hyo2.abc.lib.gdal_aux import GdalAux
 
 
 class AppInfo:
@@ -34,3 +35,5 @@ class AppInfo:
 
         self.app_tabs_icon_size = 36
         self.app_toolbars_icon_size = 24
+
+        GdalAux.check_gdal_data()
