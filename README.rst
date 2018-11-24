@@ -35,6 +35,20 @@ General info
 
 The ABC package provides common elements for HydrOffice libraries and applications.
 
+Main GUI features:
+
+* An AppInfo class (to collect info about the app)
+* An AppStyle class (to manage app styles)
+* A Browser widget
+* An Info tab
+* An Exception dialog
+* An About dialog
+
+Main library features:
+
+* A LibInfo class (to collect info about the library)
+* Helper class
+
 |
 
 Credits
