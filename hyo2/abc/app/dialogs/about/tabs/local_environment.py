@@ -47,7 +47,7 @@ class LocalEnvironmentTab(QtWidgets.QWidget):
             info["Physical Memory"] = "%.1f MB" % (psutil.virtual_memory().total / 1024 / 1024,)
             for partition in psutil.disk_partitions():
                 info["HD %s" % partition.mountpoint] = \
-                    "%.1f GB" % (psutil.disk_usage(partition.mountpoint).total / 1024 / 1024 / 1024,)
+                     "%.1f GB" % (psutil.disk_usage(partition.mountpoint).total / 1024 / 1024 / 1024,)
 
         except BaseException:
             pass

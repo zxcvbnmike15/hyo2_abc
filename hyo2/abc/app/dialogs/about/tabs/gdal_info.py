@@ -1,6 +1,6 @@
 import logging
 import gdal
-from PySide2 import QtCore, QtGui, QtWidgets
+from PySide2 import QtCore, QtWidgets
 
 logger = logging.getLogger(__name__)
 
@@ -93,7 +93,8 @@ class GdalInfoTab(QtWidgets.QWidget):
             if metadata:
                 self.table.setItem(row, 3, QtWidgets.QTableWidgetItem(str(metadata.pop(gdal.DMD_MIMETYPE, ''))))
                 self.table.setItem(row, 4, QtWidgets.QTableWidgetItem(str(metadata.pop(gdal.DMD_EXTENSION, ''))))
-                self.table.setItem(row, 5, QtWidgets.QTableWidgetItem(str(metadata.pop(gdal.DMD_CREATIONDATATYPES, ''))))
+                self.table.setItem(row, 5,
+                                   QtWidgets.QTableWidgetItem(str(metadata.pop(gdal.DMD_CREATIONDATATYPES, ''))))
 
                 full_data = metadata.pop(gdal.DMD_CREATIONOPTIONLIST, '')
                 if full_data:

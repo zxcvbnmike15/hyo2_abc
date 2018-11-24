@@ -54,7 +54,8 @@ setup(
         "bidict",
         "coverage",
         "PySide2",
-        "gdal"
+        "gdal",
+        "psutil"
     ],
     python_requires='>=3.5',
     entry_points={

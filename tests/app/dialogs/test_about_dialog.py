@@ -7,11 +7,11 @@ from PySide2.QtWidgets import (
 # import logging
 # logging.basicConfig(level=logging.DEBUG)
 
-from hyo2.abc.app.about.about_dialog import AboutDialog
-from hyo2.abc.app.about.tabs.general_info import GeneralInfoTab
-from hyo2.abc.app.about.tabs.license import LicenseTab
-from hyo2.abc.app.about.tabs.local_environment import LocalEnvironmentTab
-from hyo2.abc.app.about.tabs.gdal_info import GdalInfoTab
+from hyo2.abc.app.dialogs.about.about_dialog import AboutDialog
+from hyo2.abc.app.dialogs.about.tabs.general_info import GeneralInfoTab
+from hyo2.abc.app.dialogs.about.tabs.license import LicenseTab
+from hyo2.abc.app.dialogs.about.tabs.local_environment import LocalEnvironmentTab
+from hyo2.abc.app.dialogs.about.tabs.gdal_info import GdalInfoTab
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_info import AppInfo
 
