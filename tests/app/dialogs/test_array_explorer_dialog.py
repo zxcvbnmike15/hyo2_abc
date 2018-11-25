@@ -21,6 +21,7 @@ class TestAppArrayExplorerDialog(unittest.TestCase):
 
         arr = np.zeros((20, 30, 40), dtype=np.float32)
         d = ArrayExplorer(array=arr, parent=mw)
+        # noinspection PyCallByClass,PyTypeChecker
         QtCore.QTimer.singleShot(1, d.accept)
         ret = d.exec_()
         self.assertGreaterEqual(ret, 0)

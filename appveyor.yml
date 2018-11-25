@@ -32,7 +32,7 @@ install:
   - conda update -q conda
   - conda info -a
   - conda config --add channels conda-forge
-  - conda create -q -n test-environment python=%PYTHON_VERSION% gdal
+  - conda create -q -n test-environment python=%PYTHON_VERSION%
   - activate test-environment
   - pip install wheel
 
@@ -41,7 +41,7 @@ install:
 
   - pip install coveralls
   - pip install PySide2
-  - conda install numpy matplotlib-base
+  - conda install numpy matplotlib-base gdal
 
 build: off
 build_script:

@@ -9,7 +9,10 @@ logger = logging.getLogger(__name__)
 
 from hyo2.abc.app.dialogs.array_explorer.array_explorer import ArrayExplorer
 
-arr = np.zeros((20, 30, 40), dtype=np.float32)
+# arr = np.zeros((40, ), dtype=np.float32)
+# arr = np.zeros((30, 40), dtype=np.float32)
+# arr = np.zeros((20, 30, 40), dtype=np.float32)
+arr = np.random.rand(20, 30, 40)
 
 app = QtWidgets.QApplication([])
 
