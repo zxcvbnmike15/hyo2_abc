@@ -39,6 +39,8 @@ install:
   - conda install numpy matplotlib
   - pip install coveralls
   - pip install .
+  - conda remove --force PyQt Qt sip
+  - rm $HOME/miniconda/envs/test-environment/qt.conf
   - conda list --show-channel-urls
 
 script:
