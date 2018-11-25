@@ -8,11 +8,11 @@ environment:
 
   matrix:
 
-    - PYTHON_VERSION: 3.5
+    - PYTHON_VERSION: 3.6
       PYTHON_ARCH: x64
       MINICONDA: C:\Miniconda36-x64
 
-    - PYTHON_VERSION: 3.6
+    - PYTHON_VERSION: 3.5
       PYTHON_ARCH: x64
       MINICONDA: C:\Miniconda36-x64
 
@@ -46,8 +46,8 @@ install:
 build: off
 build_script:
   - pip install .
-  - conda remove --force PyQt Qt sip
-  - del /q %MINICONDA%\envs\test-environment\qt.conf
+  # - conda remove --force PyQt Qt sip
+  # - del /q %MINICONDA%\envs\test-environment\qt.conf
   - conda list --show-channel-urls
 
 test: off
