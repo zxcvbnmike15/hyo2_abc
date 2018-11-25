@@ -53,6 +53,8 @@ setup(
         "appdirs",
         "bidict",
         "coverage",
+        "numpy",
+        "matplotlib",
         "PySide2",
         "gdal",
         "psutil"

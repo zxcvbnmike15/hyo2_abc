@@ -39,16 +39,14 @@ install:
   # Check that we have the expected version of Python
   - python --version
 
-  # Install dependencies
-  #- conda install -q cython scipy numpy basemap pyside matplotlib netCDF4 gdal pyproj pyserial pillow
-  #- pip install gsw==3.0.6
-
   - pip install coveralls
-  - conda list --show-channel-urls
+  - pip install PySide2
+  - conda install numpy matplotlib
 
 build: off
 build_script:
   - pip install .
+  - conda list --show-channel-urls
 
 test: off
 test_script:
