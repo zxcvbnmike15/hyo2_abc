@@ -8,11 +8,11 @@ environment:
 
   matrix:
 
-    - PYTHON_VERSION: 3.6
+    - PYTHON_VERSION: 3.5
       PYTHON_ARCH: x64
       MINICONDA: C:\Miniconda36-x64
 
-    - PYTHON_VERSION: 3.7
+    - PYTHON_VERSION: 3.6
       PYTHON_ARCH: x64
       MINICONDA: C:\Miniconda36-x64
 
@@ -20,7 +20,7 @@ matrix:
 
   allow_failures:
 
-    - PYTHON_VERSION: 3.7
+    - PYTHON_VERSION: 3.5
       PYTHON_ARCH: x64
       MINICONDA: C:\Miniconda36-x64
 
@@ -41,7 +41,7 @@ install:
 
   - pip install coveralls
   - pip install PySide2
-  - conda install numpy matplotlib
+  - conda install numpy matplotlib-base
 
 build: off
 build_script:
