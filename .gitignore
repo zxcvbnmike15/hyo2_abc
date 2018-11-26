@@ -1,5 +1,10 @@
 syntax: glob
 
+# temp files
+*.sh~
+*.*~
+.DS_Store
+
 # Byte-compiled / optimized
 __pycache__/
 *.pyc

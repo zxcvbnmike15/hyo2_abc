@@ -6,6 +6,10 @@ ABC library
 
 |
 
+.. image:: https://img.shields.io/badge/docs-latest-brightgreen.svg
+    :target: https://www.hydroffice.org/manuals/abc/index.html
+    :alt: Latest Documentation
+
 .. image:: https://travis-ci.org/hydroffice/hyo2_abc.svg?branch=master
     :target: https://travis-ci.org/hydroffice/hyo2_abc
     :alt: travis-ci
