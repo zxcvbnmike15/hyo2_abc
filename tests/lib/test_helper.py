@@ -18,6 +18,21 @@ class TestABCLibHelper(unittest.TestCase):
         self.assertTrue(self.h.explore_folder(os.path.dirname(__file__)))
         self.assertFalse(self.h.explore_folder(os.path.dirname(__file__) + "fake"))
 
+    def test_first_match(self):
+        # fake dict
+        a_dict = {
+            "a": 1,
+            "b": 99,
+            "c": 1,
+        }
+
+        # test if it gives back the first matching key
+        self.assertEqual(Helper.first_match(a_dict, 1), "a")
+
+        # test if it raises with a not-existing value
+        with self.assertRaises(RuntimeError):
+            Helper.first_match(a_dict, 2)
+
     def test_is_64bit_os(self):
         self.assertIsInstance(self.h.is_64bit_os(), bool)
 

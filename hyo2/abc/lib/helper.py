@@ -51,6 +51,19 @@ class Helper:
         self.explore_folder(self.package_folder())
 
     @classmethod
+    def first_match(cls, dct, val):
+        if not isinstance(dct, dict):
+            raise RuntimeError("invalid first input: it is %s instead of a dict" % type(dct))
+
+        # print(dct, val)
+        values = [key for key, value in dct.items() if value == val]
+        if len(values) != 0:
+            return values[0]
+
+        else:
+            raise RuntimeError("unknown value %s in dict: %s" % (val, dct))
+
+    @classmethod
     def is_64bit_os(cls) -> bool:
         """ Check if the current OS is at 64 bits """
         return platform.machine().endswith('64')
