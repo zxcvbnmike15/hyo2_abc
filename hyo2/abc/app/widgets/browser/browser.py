@@ -41,6 +41,8 @@ class Browser(QtWidgets.QMainWindow):
         # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.SpatialNavigationEnabled, True)
         # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.JavascriptEnabled, True)
         # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.JavascriptCanOpenWindows, True)
+        # self.view.settings().setAttribute(
+        #     QtWebEngineWidgets.QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
         # self.interceptor = RequestInterceptor()
         self.profile = QtWebEngineWidgets.QWebEngineProfile()
         # self.profile.setRequestInterceptor(self.interceptor)
