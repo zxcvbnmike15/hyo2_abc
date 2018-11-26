@@ -107,3 +107,18 @@ QTableWidget#GdalDriversTable QHeaderView::section
     font-size: 8pt;
 }
 
+QTableView#ArrayExplorerTable {
+    color: rgba(25,115,200,255);
+    font-family: "Calibri", sans-serif;
+    font-size: 8pt;
+    padding: 0px;
+    margin: 0px;
+}
+
+QTableView#ArrayExplorerTable QHeaderView::section {
+    color: rgba(155,115,20,255);
+    font-weight: bold;
+    font-size: 6pt;
+    padding: 0px;
+    margin: 0px;
+}
