@@ -57,6 +57,7 @@ setup(
         "matplotlib",
         "PySide2",
         "gdal",
+        "pyproj",
         "psutil"
     ],
     python_requires='>=3.5',

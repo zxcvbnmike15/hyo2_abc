@@ -270,3 +270,6 @@ class InfoTab(QtWidgets.QMainWindow):
             text0.setText(txt)
 
         self.authors_dialog.show()
+
+    def change_url(self, url: str) -> None:
+        self.browser.change_url(url)

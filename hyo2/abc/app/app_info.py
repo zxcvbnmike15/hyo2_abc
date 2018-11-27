@@ -37,3 +37,4 @@ class AppInfo:
         self.app_toolbars_icon_size = 24
 
         GdalAux.check_gdal_data()
+        GdalAux.check_proj4_data()

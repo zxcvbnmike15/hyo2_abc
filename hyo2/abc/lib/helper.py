@@ -149,6 +149,35 @@ class Helper:
 
         return sys.prefix
 
+    @classmethod
+    def truncate_too_long(cls, path, max_path_length=260, left_truncation=False):
+
+        max_len = max_path_length
+
+        path_len = len(path)
+        if path_len < 260:
+            return path
+
+        logger.debug("path truncation required since path would be longer than %d [left: %s]"
+                     % (max_len, left_truncation))
+
+        folder_path, filename = os.path.split(path)
+        file_base, file_ext = os.path.splitext(filename)
+
+        if left_truncation:
+            new_len = max_len - len(folder_path) - len(file_ext) - 2
+            if new_len < 1:
+                raise RuntimeError("the passed path is too long: %d" % path_len)
+            path = os.path.join(folder_path, file_base[(len(file_base) - new_len):] + file_ext)
+
+        else:
+            new_len = max_len - len(folder_path) - len(file_ext) - 2
+            if new_len < 1:
+                raise RuntimeError("the passed path is too long: %d" % path_len)
+            path = os.path.join(folder_path, file_base[:new_len] + file_ext)
+
+        return path
+
     def package_info(self, qt_html: bool=False) -> str:
 
         def style_row(raw_row: str, is_h1: bool=False, is_h2: bool=False) -> str:
@@ -214,3 +243,14 @@ class Helper:
 
     def hydroffice_folder(self):
         return os.path.abspath(os.path.join(self.package_folder(), os.pardir))
+
+    def web_url(self, suffix=None):
+
+        url = '%s/%s' % (self._li.lib_url, self._li.lib_version.replace('.', '_'), )
+        if self.is_pydro():
+            url += "_pydro"
+
+        if suffix and isinstance(suffix, str):
+            url += "_" + suffix
+
+        return url
