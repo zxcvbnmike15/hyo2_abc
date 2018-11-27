@@ -22,6 +22,7 @@ class Browser(QtWidgets.QMainWindow):
         self._create_menu()
 
         self._tool_bar = QtWidgets.QToolBar()
+        self._tool_bar.setIconSize(QtCore.QSize(16, 16))
         self.addToolBar(self._tool_bar)
         for action in self._actions.values():
             if not action.icon().isNull():
