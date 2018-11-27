@@ -2,4 +2,7 @@
 User Manual
 ***********
 
-Currently not available
+.. toctree::
+    :maxdepth: 3
+
+    user_manual_info

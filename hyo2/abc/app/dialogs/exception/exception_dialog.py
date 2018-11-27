@@ -26,6 +26,8 @@ from hyo2.abc.lib.helper import Helper
 
 class ExceptionDialog(QDialog):
 
+    media = os.path.join(os.path.dirname(__file__), "media")
+
     def __init__(self, app_info: AppInfo, lib_info: LibInfo,
                  ex_type: Optional[type]=None, ex_value: Optional[BaseException]=None,
                  tb: Optional[TracebackType]=None, parent: Optional[QObject]=None):
@@ -45,7 +47,7 @@ class ExceptionDialog(QDialog):
             self.setWindowTitle("User Bug Report")
         else:
             self.setWindowTitle("Critical Error")
-        self.setWindowIcon(QIcon(os.path.join(app_info.app_media_path, "bug.png")))
+        self.setWindowIcon(QIcon(os.path.join(self.media, "bug.png")))
         self.setMinimumSize(200, 200)
         self.resize(500, 300)
 
@@ -55,7 +57,7 @@ class ExceptionDialog(QDialog):
 
         self.left_layout = QVBoxLayout()
         self.icon_label = QLabel(self)
-        self.icon_label.setPixmap(os.path.abspath(os.path.join(app_info.app_media_path, "bug.png")))
+        self.icon_label.setPixmap(os.path.abspath(os.path.join(self.media, "bug.png")))
         self.icon_label.setScaledContents(True)
         self.icon_label.setFixedSize(96, 96)
         self.left_layout.addWidget(self.icon_label)

@@ -1,3 +1,4 @@
+import ctypes
 import importlib
 import os
 import platform
@@ -102,6 +103,20 @@ class Helper:
                 return True
 
         return False
+
+    @classmethod
+    def is_user_admin(cls):
+        if cls.is_windows():
+
+            if ctypes.windll.shell32.IsUserAnAdmin():
+                logger.debug("user is admin")
+                return True
+            else:
+                logger.debug("user is not admin")
+                return False
+
+        else:
+            raise RuntimeError("Windows only")
 
     @classmethod
     def is_windows(cls) -> bool:
