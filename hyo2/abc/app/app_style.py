@@ -15,7 +15,6 @@ class AppStyle:
     @classmethod
     def load_stylesheet(cls) -> str:
         media = cls.media.replace("\\", "/")
-        rc = os.path.join(media, "rc").replace("\\", "/")
         if platform.system().lower() == 'win32':
             import win32api
             # noinspection PyProtectedMember
@@ -23,7 +22,7 @@ class AppStyle:
         style_path = os.path.join(media, "app.css").replace("\\", "/")
 
         with open(style_path) as fid:
-            style = fid.read().replace("LOCAL_PATH", rc)
+            style = fid.read().replace("LOCAL_PATH", media)
 
         if platform.system().lower() == 'darwin':  # see issue #12 on github
             mac_fix = '''

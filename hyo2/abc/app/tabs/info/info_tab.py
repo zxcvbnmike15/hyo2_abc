@@ -12,6 +12,7 @@ from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_info import AppInfo
 from hyo2.abc.app.widgets.browser.browser import Browser
 from hyo2.abc.app.dialogs.about.about_dialog import AboutDialog
+from hyo2.abc.app.dialogs.noaa_s57.noaa_s57 import NOAAS57Dialog
 
 
 class InfoTab(QtWidgets.QMainWindow):
@@ -29,7 +30,8 @@ class InfoTab(QtWidgets.QMainWindow):
                  with_ccom_link: bool = False,
                  with_noaa_link: bool = False,
                  with_unh_link: bool = False,
-                 with_license: bool = False
+                 with_license: bool = False,
+                 with_noaa_57: bool = False
                  ):
         super().__init__(main_win)
         self._li = lib_info
@@ -135,6 +137,18 @@ class InfoTab(QtWidgets.QMainWindow):
 
         self.toolbar.addSeparator()
 
+        self.noaa_support_action = None
+        if with_noaa_57:
+            # noaa support
+            self.toolbar.addSeparator()
+            self.noaa_support_action = QtWidgets.QAction(QtGui.QIcon(os.path.join(self.media, 'noaa_support.png')),
+                                                         'NOAA S57 Support Files', self)
+            # noinspection PyUnresolvedReferences
+            self.noaa_support_action.triggered.connect(self.show_noaa_support)
+            self.toolbar.addAction(self.noaa_support_action)
+
+        self.toolbar.addSeparator()
+
         # license
         self.license_action = None
         if with_license:
@@ -207,6 +221,10 @@ class InfoTab(QtWidgets.QMainWindow):
     def load_unh_edu(self):
         url = 'http://www.unh.edu'
         self.browser.change_url(url)
+
+    def show_noaa_support(self):
+        noaa_s57 = NOAAS57Dialog(lib_info=self._li, app_info=self._ai)
+        noaa_s57.exec_()
 
     def load_license(self):
         url = 'https://www.hydroffice.org/license/'
