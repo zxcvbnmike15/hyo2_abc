@@ -1,9 +1,10 @@
+import ctypes
 import os
 import shutil
+import traceback
 import zipfile
-import ctypes
-
 import logging
+
 logger = logging.getLogger(__name__)
 
 from hyo2.abc.lib.progress.cli_progress import CliProgress
@@ -93,7 +94,8 @@ class NOAASupport:
             return self.local_noaa_support_folder_present()
 
         except Exception as e:
-            logger.error('during WOA09 download and unzip: %s' % e)
+            traceback.print_exc()
+            logger.error('during download and unzip: %s' % e)
             return False
 
     def download_from_unh(self):

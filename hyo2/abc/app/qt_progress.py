@@ -1,4 +1,4 @@
-from PySide2 import QtCore,  QtWidgets
+from PySide2 import QtCore, QtWidgets
 import traceback
 import logging
 

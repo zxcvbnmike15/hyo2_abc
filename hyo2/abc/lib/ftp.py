@@ -1,8 +1,8 @@
 import ftplib
-import socket
-
-import sys
 import os
+import socket
+import sys
+import traceback
 
 import logging
 
@@ -208,4 +208,5 @@ class Ftp:
                         self.progress.end()
 
             except:
+                traceback.print_exc()
                 raise RuntimeError("unable to unzip the downloaded file: %s" % file_dst)
