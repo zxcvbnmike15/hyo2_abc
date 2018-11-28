@@ -16,7 +16,7 @@ class Testing:
             self.root_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, os.pardir))
         else:
             if not os.path.exists(root_folder):
-                raise RuntimeError("passed invalid root folder: " % root_folder)
+                raise RuntimeError("passed invalid root folder: %s" % root_folder)
             self.root_folder = root_folder
 
     # --- FOLDERS ---
