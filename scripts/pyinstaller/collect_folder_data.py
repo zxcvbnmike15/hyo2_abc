@@ -1,11 +1,10 @@
 import os
 import sys
-from PyInstaller.building.build_main import Analysis, PYZ, EXE, COLLECT, BUNDLE, TOC
+from PyInstaller.building.build_main import TOC
+from PyInstaller.utils.hooks import remove_prefix, PY_IGNORE_EXTENSIONS
 
 
 def collect_folder_data(folder: str, visit_sub_folders=True, include_py_files=False,):
-    import os
-    from PyInstaller.utils.hooks import remove_prefix, PY_IGNORE_EXTENSIONS
 
     interpreter_path = os.path.dirname(sys.executable)
     folder_path = os.path.join(interpreter_path, folder)

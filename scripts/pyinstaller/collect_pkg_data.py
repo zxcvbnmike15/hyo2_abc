@@ -1,4 +1,4 @@
-from PyInstaller.building.build_main import Analysis, PYZ, EXE, COLLECT, BUNDLE, TOC
+from PyInstaller.building.build_main import TOC
 
 
 def collect_pkg_data(package, include_py_files=False, subdir=None):

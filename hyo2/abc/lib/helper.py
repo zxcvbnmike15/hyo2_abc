@@ -212,8 +212,11 @@ class Helper:
         def package_version(package: str) -> str:
             try:
                 return importlib.import_module("%s" % package).__version__
-            except ImportError:
-                return "N/A"
+            except (ImportError, AttributeError):
+                try:
+                    return importlib.import_module("%s" % package).VERSION
+                except (ImportError, AttributeError):
+                    return "N/A"
 
         msg = str()
 
