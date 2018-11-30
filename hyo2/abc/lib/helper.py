@@ -249,7 +249,7 @@ class Helper:
 
     def web_url(self, suffix=None):
 
-        url = '%s/%s' % (self._li.lib_url, self._li.lib_version.replace('.', '_'), )
+        url = '%s%s' % (self._li.lib_url, self._li.lib_version.replace('.', '_'), )
         if self.is_pydro():
             url += "_pydro"
 

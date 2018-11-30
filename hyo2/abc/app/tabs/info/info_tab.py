@@ -52,6 +52,10 @@ class InfoTab(QtWidgets.QMainWindow):
             start_url = "%s%s" % (self._ai.app_url, self._ai.app_version.replace(".", "_"))
         self.start_url = start_url
 
+        # add browser
+        self.browser = Browser(url=self.start_url)
+        self.frame_layout.addWidget(self.browser)
+
         # add about dialog
         self.about_dlg = AboutDialog(lib_info=self._li, app_info=self._ai, parent=self,
                                      with_locale_tab=True, with_gdal_tab=True)
@@ -139,6 +143,7 @@ class InfoTab(QtWidgets.QMainWindow):
 
         self.noaa_support_action = None
         if with_noaa_57:
+            self.change_url(Helper(lib_info=lib_info).web_url("noaa_support"))
             # noaa support
             self.toolbar.addSeparator()
             self.noaa_support_action = QtWidgets.QAction(QtGui.QIcon(os.path.join(self.media, 'noaa_support.png')),
@@ -173,10 +178,6 @@ class InfoTab(QtWidgets.QMainWindow):
         # noinspection PyUnresolvedReferences
         self.show_about_action.triggered.connect(self.about_dlg.switch_visible)
         self.toolbar.addAction(self.show_about_action)
-
-        # add browser
-        self.browser = Browser(url=self.start_url)
-        self.frame_layout.addWidget(self.browser)
 
     # ### ICON RESIZE ###
 

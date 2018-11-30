@@ -33,7 +33,18 @@ mw.setWindowIcon(QtGui.QIcon(app_info.app_icon_path))
 tabs = QtWidgets.QTabWidget()
 mw.setCentralWidget(tabs)
 
-t = InfoTab(app_info=app_info, lib_info=LibInfo(), main_win=mw)
+t = InfoTab(app_info=app_info, lib_info=LibInfo(),
+            with_online_manual=True,
+            with_offline_manual=True,
+            with_bug_report=True,
+            with_hydroffice_link=True,
+            with_ccom_link=True,
+            with_noaa_link=True,
+            with_unh_link=True,
+            with_license=True,
+            with_noaa_57=True,
+            main_win=mw)
+
 tabs.insertTab(0, t, "Info")
 mw.show()
 
