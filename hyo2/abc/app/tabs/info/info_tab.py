@@ -212,16 +212,16 @@ class InfoTab(QtWidgets.QMainWindow):
         self.browser.change_url(url)
 
     def load_noaa_ocs_gov(self):
-        url = 'http://www.nauticalcharts.noaa.gov/'
-        self.browser.change_url(url)
+        url = 'https://www.nauticalcharts.noaa.gov/'
+        Helper.explore_folder(url)
 
     def load_ccom_unh_edu(self):
-        url = 'http://ccom.unh.edu'
-        self.browser.change_url(url)
+        url = 'https://ccom.unh.edu'
+        Helper.explore_folder(url)
 
     def load_unh_edu(self):
-        url = 'http://www.unh.edu'
-        self.browser.change_url(url)
+        url = 'https://www.unh.edu'
+        Helper.explore_folder(url)
 
     def show_noaa_support(self):
         noaa_s57 = NOAAS57Dialog(lib_info=self._li, app_info=self._ai)

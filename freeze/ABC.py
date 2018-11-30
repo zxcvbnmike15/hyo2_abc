@@ -7,6 +7,7 @@ from hyo2.abc.app.app_style import AppStyle
 from hyo2.abc.app.app_info import AppInfo
 from hyo2.abc.app.tabs.info.info_tab import InfoTab
 
+
 def set_logging(default_logging=logging.WARNING, hyo2_logging=logging.INFO, abc_logging=logging.DEBUG):
     logging.basicConfig(
         level=default_logging,
@@ -18,6 +19,7 @@ def set_logging(default_logging=logging.WARNING, hyo2_logging=logging.INFO, abc_
 
 set_logging()
 app_info = AppInfo()
+lib_info = LibInfo()
 
 app = QtWidgets.QApplication([])
 app.setApplicationName('%s' % app_info.app_name)
@@ -33,7 +35,7 @@ mw.setWindowIcon(QtGui.QIcon(app_info.app_icon_path))
 tabs = QtWidgets.QTabWidget()
 mw.setCentralWidget(tabs)
 
-t = InfoTab(app_info=app_info, lib_info=LibInfo(),
+t = InfoTab(app_info=app_info, lib_info=lib_info,
             with_online_manual=True,
             with_offline_manual=True,
             with_bug_report=True,
@@ -45,7 +47,11 @@ t = InfoTab(app_info=app_info, lib_info=LibInfo(),
             with_noaa_57=True,
             main_win=mw)
 
+
 tabs.insertTab(0, t, "Info")
+
 mw.show()
+
+print("browser storage: %s" % t.browser.view.page().profile().persistentStoragePath())
 
 sys.exit(app.exec_())
