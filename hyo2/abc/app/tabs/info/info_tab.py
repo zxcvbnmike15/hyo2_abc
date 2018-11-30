@@ -143,7 +143,6 @@ class InfoTab(QtWidgets.QMainWindow):
 
         self.noaa_support_action = None
         if with_noaa_57:
-            self.change_url(Helper(lib_info=lib_info).web_url("noaa_support"))
             # noaa support
             self.toolbar.addSeparator()
             self.noaa_support_action = QtWidgets.QAction(QtGui.QIcon(os.path.join(self.media, 'noaa_support.png')),
@@ -224,6 +223,7 @@ class InfoTab(QtWidgets.QMainWindow):
         Helper.explore_folder(url)
 
     def show_noaa_support(self):
+        self.change_url(Helper(lib_info=self._li).web_url("noaa_support"))
         noaa_s57 = NOAAS57Dialog(lib_info=self._li, app_info=self._ai)
         noaa_s57.exec_()
 
