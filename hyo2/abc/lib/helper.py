@@ -95,6 +95,56 @@ class Helper:
             return False
 
     @classmethod
+    def hstb_folder(cls) -> str:
+        if not cls.is_pydro():
+            raise RuntimeError("this method should be called only within a Pydro environment")
+
+        # noinspection PyUnresolvedReferences
+        from HSTB import __file__ as hstb_file
+
+        return os.path.abspath(os.path.dirname(hstb_file))
+
+    @classmethod
+    def hstb_atlases_folder(cls) -> str:
+        if not cls.is_pydro():
+            raise RuntimeError("this method should be called only within a Pydro environment")
+
+        folder = os.path.join(cls.hstb_folder(), "..\..\..\supplementals")
+        if not os.path.exists(folder):
+            os.mkdir(folder)
+        return folder
+
+    @classmethod
+    def hstb_woa09_folder(cls) -> str:
+        if not cls.is_pydro():
+            raise RuntimeError("this method should be called only within a Pydro environment")
+
+        try:
+            # noinspection PyUnresolvedReferences
+            import WOA09
+            folder = WOA09.__path__[0]
+        except ImportError:
+            folder = os.path.join(cls.hstb_atlases_folder(), "woa09")
+            if not os.path.exists(folder):
+                os.mkdir(folder)
+        return folder
+
+    @classmethod
+    def hstb_woa13_folder(cls) -> str:
+        if not cls.is_pydro():
+            raise RuntimeError("this method should be called only within a Pydro environment")
+
+        try:
+            # noinspection PyUnresolvedReferences
+            import WOA13
+            folder = WOA13.__path__[0]
+        except ImportError:
+            folder = os.path.join(cls.hstb_atlases_folder(), "woa13")
+            if not os.path.exists(folder):
+                os.mkdir(folder)
+        return folder
+
+    @classmethod
     def is_url(cls, value) -> bool:
         if len(value) > 7:
 

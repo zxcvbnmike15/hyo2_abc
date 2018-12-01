@@ -1,6 +1,7 @@
 import os
 from typing import Optional
 import logging
+
 logger = logging.getLogger(__name__)
 
 
@@ -32,6 +33,16 @@ class Testing:
         if not os.path.exists(folder):
             os.makedirs(folder)
         return folder
+
+    def input_data_sub_folders(self) -> list:
+        """Return a list of sub-folders under the input folder"""
+        folder_list = list()
+        list_dir = os.listdir(self.input_data_folder())
+        for element in list_dir:
+            element_path = os.path.join(self.input_data_folder(), element)
+            if os.path.isdir(element_path):
+                folder_list.append(element_path)
+        return folder_list
 
     def download_data_folder(self) -> str:
         folder = os.path.abspath(os.path.join(self.root_data_folder(), 'download'))
@@ -79,3 +90,4 @@ class Testing:
 
     def output_test_files(self, ext: str, subfolder: Optional[str]=None) -> list:
         return self.files(folder=self.output_data_folder(), ext=ext, subfolder=subfolder)
+
