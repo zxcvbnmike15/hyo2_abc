@@ -41,7 +41,7 @@ install:
 
   - pip install coveralls
   - pip install PySide2
-  - conda install numpy matplotlib-base gdal=2.2.4 pyproj
+  - conda install numpy matplotlib-base gdal pyproj
 
 build: off
 build_script:

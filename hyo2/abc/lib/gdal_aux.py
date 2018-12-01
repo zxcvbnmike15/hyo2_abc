@@ -1,4 +1,7 @@
-import gdal
+try:
+    import gdal
+except ImportError:
+    from osgeo import gdal
 import ogr
 import osr
 import pyproj
