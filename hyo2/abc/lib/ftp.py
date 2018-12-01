@@ -69,10 +69,10 @@ class ProgressBar(object):
         """ Update the progress bar """
         # running in a real terminal
         if hasattr(self.stdout, 'isatty') and self.stdout.isatty():
-            self.stdout.write(b'\r')
+            self.stdout.write('\r')
         # being piped or redirected
         else:
-            self.stdout.write(b'\n')
+            self.stdout.write('\n')
         self.stdout.write(str(self))
         self.stdout.flush()
 

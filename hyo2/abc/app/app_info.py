@@ -1,5 +1,7 @@
 import os
 
+from PySide2 import QtWidgets
+
 from hyo2.abc import name
 from hyo2.abc import __version__
 from hyo2.abc.lib.gdal_aux import GdalAux
