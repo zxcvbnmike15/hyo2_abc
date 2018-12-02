@@ -1,5 +1,5 @@
-ABC library
-===========
+HydrOffice ABC
+==============
 
 .. image:: https://github.com/hydroffice/hyo2_abc/raw/master/hyo2/abc/app/media/app_icon.png
     :alt: logo
@@ -36,6 +36,10 @@ ABC library
 
 General info
 ------------
+
+HydrOffice is a research development environment for ocean mapping. It provides a collection of hydro-packages,
+each of them dealing with a specific issue of the field.
+The main goal is to speed up both algorithms testing and research-2-operation.
 
 The ABC package provides common elements for HydrOffice libraries and applications.
 

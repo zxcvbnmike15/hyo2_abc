@@ -1,9 +1,9 @@
 import logging
 
+from hyo2.abc.lib.testing import Testing
+
 logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
-
-from hyo2.abc.lib.testing import Testing
 
 t = Testing()
 

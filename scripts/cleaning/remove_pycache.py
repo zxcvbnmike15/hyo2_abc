@@ -17,6 +17,6 @@ def remove_pycache(folder: str):
                 shutil.rmtree(full_path)
 
 
-folder_path = r"C:\code\hyo2\soundspeed"
+folder_path = r"C:\code\hyo2\abc\hyo2_huddl"
 
 remove_pycache(folder=folder_path)
