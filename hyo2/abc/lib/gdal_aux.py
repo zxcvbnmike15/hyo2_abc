@@ -143,6 +143,16 @@ class GdalAux:
             # logger.debug("unset original GDAL_DATA = %s" % os.environ['GDAL_DATA'])
             del os.environ['GDAL_DATA']
 
+        gdal_data_path0 = os.path.join(os.path.dirname(gdal.__file__), 'osgeo', 'data', 'gdal')
+        gcs_csv_path0 = os.path.join(gdal_data_path0, 'gcs.csv')
+        if os.path.exists(gcs_csv_path0):
+
+            gdal.SetConfigOption('GDAL_DATA', gdal_data_path0)
+            logger.debug("GDAL_DATA = %s" % gdal.GetConfigOption('GDAL_DATA'))
+            cls.gdal_data_fixed = True
+            cls.push_gdal_error_handler()
+            return
+
         gdal_data_path1 = os.path.join(os.path.dirname(gdal.__file__), 'data', 'gdal')
         gcs_csv_path1 = os.path.join(gdal_data_path1, 'gcs.csv')
         if os.path.exists(gcs_csv_path1):
@@ -188,8 +198,8 @@ class GdalAux:
 
         # TODO: add more cases to find GDAL_DATA
 
-        raise RuntimeError("Unable to locate GDAL data at:\n- %s\n- %s\n- %s\n- %s"
-                           % (gdal_data_path1, gdal_data_path2, gdal_data_path3, gdal_data_path4))
+        raise RuntimeError("Unable to locate GDAL data at:\n- %s\n- %s\n- %s\n- %s\n- %s"
+                           % (gdal_data_path0, gdal_data_path1, gdal_data_path2, gdal_data_path3, gdal_data_path4))
 
     @classmethod
     def check_proj4_data(cls):
