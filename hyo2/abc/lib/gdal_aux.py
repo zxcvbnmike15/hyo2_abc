@@ -143,6 +143,11 @@ class GdalAux:
             # logger.debug("unset original GDAL_DATA = %s" % os.environ['GDAL_DATA'])
             del os.environ['GDAL_DATA']
 
+        if 'GDAL_DRIVER_PATH' in os.environ:
+
+            # logger.debug("unset original GDAL_DRIVER_PATH = %s" % os.environ['GDAL_DRIVER_PATH'])
+            del os.environ['GDAL_DRIVER_PATH']
+
         gdal_data_path0 = os.path.join(os.path.dirname(gdal.__file__), 'osgeo', 'data', 'gdal')
         gcs_csv_path0 = os.path.join(gdal_data_path0, 'gcs.csv')
         if os.path.exists(gcs_csv_path0):
