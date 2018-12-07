@@ -202,7 +202,7 @@ QMenu::indicator:exclusive:checked:selected {
 
 QMenu::right-arrow {
     margin: 5px;
-    image: url(LOCAL_PATH/rc/right_arrow.png)
+    image: url(LOCAL_PATH/rc/right_arrow_cyan.png)
 }
 
 QMenu::separator
@@ -268,7 +268,7 @@ QScrollBar::sub-line:horizontal
 
 QScrollBar::add-line:horizontal:hover,QScrollBar::add-line:horizontal:on
 {
-    border-image: url(LOCAL_PATH/rc/right_arrow.png);
+    border-image: url(LOCAL_PATH/rc/right_arrow_cyan.png);
     height: 10px;
     width: 10px;
     subcontrol-position: right;
@@ -277,7 +277,7 @@ QScrollBar::add-line:horizontal:hover,QScrollBar::add-line:horizontal:on
 
 QScrollBar::sub-line:horizontal:hover, QScrollBar::sub-line:horizontal:on
 {
-    border-image: url(LOCAL_PATH/rc/left_arrow.png);
+    border-image: url(LOCAL_PATH/rc/left_arrow_cyan.png);
     height: 10px;
     width: 10px;
     subcontrol-position: left;
@@ -334,7 +334,7 @@ QScrollBar::add-line:vertical
 QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on
 {
 
-    border-image: url(LOCAL_PATH/rc/up_arrow.png);
+    border-image: url(LOCAL_PATH/rc/up_arrow_cyan.png);
     height: 10px;
     width: 10px;
     subcontrol-position: top;
@@ -343,7 +343,7 @@ QScrollBar::sub-line:vertical:hover,QScrollBar::sub-line:vertical:on
 
 QScrollBar::add-line:vertical:hover, QScrollBar::add-line:vertical:on
 {
-    border-image: url(LOCAL_PATH/rc/down_arrow.png);
+    border-image: url(LOCAL_PATH/rc/down_arrow_cyan.png);
     height: 10px;
     width: 10px;
     subcontrol-position: bottom;
@@ -374,7 +374,7 @@ QTabWidget::pane {
 }
 
 QTabWidget::tab-bar {
-    left: 5px; /* move to the right by .. */
+    left: 5px;  /* move to the right by .. */
 }
 
 QTabWidget:focus, QCheckBox:focus, QRadioButton:focus, QSlider:focus
@@ -416,8 +416,9 @@ QTabBar::tab:top {
     background-color: #fefdfc;
     border: 1px solid #76797C;
     border-bottom: 1px transparent black;
-    padding: 4px 4px 4px 18px;
-    min-width: 50px;
+    margin: 0px;
+    padding: 4px 4px 4px 17px;
+    min-width: 30px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -438,7 +439,7 @@ QTabBar::tab:bottom {
     border: 1px solid #76797C;
     border-top: 1px transparent black;
     padding: 4px 4px 4px 4px;
-    min-width: 50px;
+    min-width: 30px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
@@ -759,7 +760,7 @@ QComboBox
     border: 1px solid #76797C;
     border-radius: 2px;
     padding: 5px;
-    min-width: 75px;
+    min-width: 40px;
 }
 
 QComboBox:hover,QPushButton:hover,QAbstractSpinBox:hover,QLineEdit:hover,QTextEdit:hover,QPlainTextEdit:hover,QAbstractView:hover,QTreeView:hover
@@ -772,12 +773,12 @@ QComboBox:on
 {
     padding-top: 3px;
     padding-left: 4px;
-    selection-background-color: #4a4a4a;
+    selection-background-color: #9a9a9a;
 }
 
 QComboBox QAbstractItemView
 {
-    background-color: #232629;
+    background-color: #adadad;
     border-radius: 2px;
     border: 1px solid #76797C;
     selection-background-color: #bad3e0;
@@ -804,7 +805,7 @@ QComboBox::down-arrow
 QComboBox::down-arrow:on, QComboBox::down-arrow:hover,
 QComboBox::down-arrow:focus
 {
-    image: url(LOCAL_PATH/rc/down_arrow.png);
+    image: url(LOCAL_PATH/rc/down_arrow_cyan.png);
 }
 
 /* QAbstractSpinBox */
@@ -812,7 +813,7 @@ QComboBox::down-arrow:focus
 QAbstractSpinBox {
     padding: 5px;
     border: 1px solid #76797C;
-    background-color: #232629;
+    background-color: #eeeeee;
     color: #61889b;
     border-radius: 2px;
     min-width: 75px;
@@ -839,7 +840,7 @@ QAbstractSpinBox::up-arrow,QAbstractSpinBox::up-arrow:disabled,QAbstractSpinBox:
 }
 QAbstractSpinBox::up-arrow:hover
 {
-    image: url(LOCAL_PATH/rc/up_arrow.png);
+    image: url(LOCAL_PATH/rc/up_arrow_cyan.png);
 }
 
 QAbstractSpinBox::down-arrow,QAbstractSpinBox::down-arrow:disabled,QAbstractSpinBox::down-arrow:off
@@ -850,7 +851,7 @@ QAbstractSpinBox::down-arrow,QAbstractSpinBox::down-arrow:disabled,QAbstractSpin
 }
 QAbstractSpinBox::down-arrow:hover
 {
-    image: url(LOCAL_PATH/rc/down_arrow.png);
+    image: url(LOCAL_PATH/rc/down_arrow_cyan.png);
 }
 
 /* QLabel */
@@ -1038,7 +1039,7 @@ QToolButton:checked, QToolButton:pressed,
 /* the subcontrol below is used only in the InstantPopup or DelayedPopup mode */
 QToolButton::menu-indicator
 {
-    image: url(LOCAL_PATH/rc/down_arrow.png);
+    image: url(LOCAL_PATH/rc/down_arrow_cyan.png);
     top: -7px; left: -2px; /* shift it a bit */
 }
 
@@ -1055,7 +1056,7 @@ QToolButton::menu-button
 
 QToolButton::menu-arrow
 {
-    image: url(LOCAL_PATH/rc/down_arrow.png);
+    image: url(LOCAL_PATH/rc/down_arrow_cyan.png);
 }
 
 QToolButton::menu-arrow:open
@@ -1181,7 +1182,7 @@ QDateEdit::down-arrow
 QDateEdit::down-arrow:on, QDateEdit::down-arrow:hover,
 QDateEdit::down-arrow:focus
 {
-    image: url(LOCAL_PATH/rc/down_arrow.png);
+    image: url(LOCAL_PATH/rc/down_arrow_cyan.png);
 }
 
 /* QTableView */
@@ -1257,11 +1258,11 @@ QHeaderView::section:checked
 
  /* style the sort indicator */
 QHeaderView::down-arrow {
-    image: url(LOCAL_PATH/rc/down_arrow.png);
+    image: url(LOCAL_PATH/rc/down_arrow_cyan.png);
 }
 
 QHeaderView::up-arrow {
-    image: url(LOCAL_PATH/rc/up_arrow.png);
+    image: url(LOCAL_PATH/rc/up_arrow_cyan.png);
 }
 
 /* ****************************************************************************************************************** */

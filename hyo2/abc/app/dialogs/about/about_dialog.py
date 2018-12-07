@@ -61,6 +61,7 @@ class AboutDialog(QtWidgets.QDialog):
         right_layout = QtWidgets.QVBoxLayout()
         top_layout.addLayout(right_layout)
         self.tab_widget = QtWidgets.QTabWidget(self)
+        self.tab_widget.setTabPosition(QtWidgets.QTabWidget.South)
         self.general_info_tab = GeneralInfoTab(lib_info=self._li, parent=self)
         self.tab_widget.addTab(self.general_info_tab, "Overview")
         self.license_tab = LicenseTab(app_info=self._ai, parent=self)

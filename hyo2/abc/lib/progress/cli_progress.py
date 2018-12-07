@@ -1,15 +1,16 @@
 import logging
 
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.lib.progress.abstract_progress import AbstractProgress
+
+logger = logging.getLogger(__name__)
 
 
 class CliProgress(AbstractProgress):
     """Command-line interface implementation of a progress bar"""
 
-    def __init__(self):
+    def __init__(self, use_logger=False):
         super(CliProgress, self).__init__()
+        self.use_logger = use_logger
 
     @property
     def canceled(self):
@@ -90,4 +91,7 @@ class CliProgress(AbstractProgress):
         self._print()
 
     def _print(self):
-        print('[%s] %s: %.1f%%' % (self._title, self._text, (self._value - self._min) / self._range * 100))
+        if self.use_logger:
+            logging.debug('[%s] %s: %.1f%%' % (self._title, self._text, (self._value - self._min) / self._range * 100))
+        else:
+            print('[%s] %s: %.1f%%' % (self._title, self._text, (self._value - self._min) / self._range * 100))
