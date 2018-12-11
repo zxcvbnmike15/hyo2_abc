@@ -8,9 +8,9 @@ import logging
 
 from appdirs import user_data_dir
 
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.lib.lib_info import LibInfo
+
+logger = logging.getLogger(__name__)
 
 
 class Helper:

@@ -16,14 +16,13 @@ from hyo2.abc.app.dialogs.noaa_s57.noaa_s57 import NOAAS57Dialog
 
 
 class InfoTab(QtWidgets.QMainWindow):
-
     media = os.path.join(os.path.dirname(__file__), "media")
 
     def __init__(self, main_win: QtWidgets.QMainWindow,
                  lib_info: LibInfo, app_info: AppInfo,
-                 tab_name: str="App Info Tab",  start_url: Optional[str]=None,
-                 default_url: str="http://www.hydroffice.org",
-                 with_online_manual: bool=False,
+                 tab_name: str = "App Info Tab", start_url: Optional[str] = None,
+                 default_url: str = "http://www.hydroffice.org",
+                 with_online_manual: bool = False,
                  with_offline_manual: bool = False,
                  with_bug_report: bool = False,
                  with_hydroffice_link: bool = False,
@@ -49,7 +48,7 @@ class InfoTab(QtWidgets.QMainWindow):
         self.frame.setLayout(self.frame_layout)
 
         if start_url is None:
-            start_url = "%s%s" % (self._ai.app_url, self._ai.app_version.replace(".", "_"))
+            start_url = Helper(lib_info=self._li).web_url()
         self.start_url = start_url
 
         # add browser
