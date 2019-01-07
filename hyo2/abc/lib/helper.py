@@ -1,4 +1,5 @@
 import ctypes
+from datetime import datetime, timedelta, timezone
 import importlib
 import os
 import platform
@@ -15,6 +16,8 @@ logger = logging.getLogger(__name__)
 
 class Helper:
     """ A collection class with many helper functions, in alphabetic order """
+
+    epoch = datetime(1970, 1, 1, tzinfo=timezone.utc)
 
     def __init__(self, lib_info: LibInfo):
         self._li = lib_info
@@ -50,6 +53,17 @@ class Helper:
 
     def explore_package_folder(self):
         self.explore_folder(self.package_folder())
+
+    @classmethod
+    def file_size_timestamp(cls, file_path: str) -> (int, datetime):
+        """file size in bytes and timestamp as datetime"""
+        if not os.path.exists(file_path):
+            raise RuntimeError("the passed file does not exist: %s" % file_path)
+
+        file_stat = os.stat(file_path)
+        mod_timestamp = cls.epoch + timedelta(seconds=file_stat.st_mtime)
+        file_sz = file_stat.st_size
+        return file_sz, mod_timestamp
 
     @classmethod
     def first_match(cls, dct, val):
