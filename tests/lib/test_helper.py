@@ -27,7 +27,7 @@ class TestABCLibHelper(unittest.TestCase):
         }
 
         # test if it gives back the first matching key
-        self.assertEqual(Helper.first_match(a_dict, 1), "a")
+        self.assertTrue(Helper.first_match(a_dict, 1) in ["a", "c"])
 
         # test if it raises with a not-existing value
         with self.assertRaises(RuntimeError):

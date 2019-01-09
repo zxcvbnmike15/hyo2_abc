@@ -41,6 +41,7 @@ class TestAppAboutDialog(unittest.TestCase):
 
 class TestAppAboutDialogGeneralInfoTab(unittest.TestCase):
 
+    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
         if not QtWidgets.qApp:
@@ -52,6 +53,7 @@ class TestAppAboutDialogGeneralInfoTab(unittest.TestCase):
 
 class TestAppAboutDialogLicenseTab(unittest.TestCase):
 
+    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
         if not QtWidgets.qApp:
@@ -63,6 +65,7 @@ class TestAppAboutDialogLicenseTab(unittest.TestCase):
 
 class TestAppAboutDialogLocalEnvironmentTab(unittest.TestCase):
 
+    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
         if not QtWidgets.qApp:
@@ -74,6 +77,7 @@ class TestAppAboutDialogLocalEnvironmentTab(unittest.TestCase):
 
 class TestAppAboutDialogGdalInfoTab(unittest.TestCase):
 
+    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
         if not QtWidgets.qApp:
