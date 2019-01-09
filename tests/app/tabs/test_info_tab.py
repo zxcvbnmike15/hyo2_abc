@@ -1,4 +1,5 @@
 import unittest
+import platform
 
 from PySide2 import QtCore, QtWidgets, QtTest
 
@@ -12,6 +13,7 @@ from hyo2.abc.app.app_info import AppInfo
 
 class TestAppTabsInfoTab(unittest.TestCase):
 
+    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_show(self):
 
         if not QtWidgets.qApp:
