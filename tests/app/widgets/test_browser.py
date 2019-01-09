@@ -1,4 +1,5 @@
 import unittest
+import platform
 
 from PySide2 import QtCore, QtWidgets, QtTest
 
@@ -10,6 +11,7 @@ from hyo2.abc.app.widgets.browser.browser import Browser
 
 class TestAppBrowserBrowser(unittest.TestCase):
 
+    @unittest.skipIf(platform.system() in ['Darwin', 'Linux'], "Windows only")
     def test_change_url(self):
 
         if not QtWidgets.qApp:
