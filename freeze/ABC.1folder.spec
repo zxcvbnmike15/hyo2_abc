@@ -60,7 +60,7 @@ if is_darwin:
 a = Analysis(['ABC.py'],
              pathex=[],
              hiddenimports=["PIL", "scipy._lib.messagestream"],
-             excludes=["IPython", "PyQt4", "pandas", "sphinx", "sphinx_rtd_theme", "OpenGL_accelerate",
+             excludes=["IPython", "PyQt5", "pandas", "sphinx", "sphinx_rtd_theme", "OpenGL_accelerate",
                        "FixTk", "tcl", "tk", "_tkinter", "tkinter", "Tkinter",
                        "wx"],
              hookspath=None,
