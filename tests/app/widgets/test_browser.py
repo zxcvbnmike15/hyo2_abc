@@ -25,6 +25,7 @@ class TestAppBrowserBrowser(unittest.TestCase):
         w.change_url(new_url)
         self.assertEqual(new_url, w.url())
 
+    @unittest.skipIf(platform.system() in ['Darwin', 'Linux'], "Windows only")
     def test_type_url(self):
 
         if not QtWidgets.qApp:
