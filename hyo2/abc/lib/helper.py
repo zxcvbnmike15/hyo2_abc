@@ -55,6 +55,14 @@ class Helper:
         self.explore_folder(self.package_folder())
 
     @classmethod
+    def file_size(cls, file_path: str) -> int:
+        """file size in bytes and timestamp as datetime"""
+        if not os.path.exists(file_path):
+            raise RuntimeError("the passed file does not exist: %s" % file_path)
+
+        return os.stat(file_path).st_size
+
+    @classmethod
     def file_size_timestamp(cls, file_path: str) -> (int, datetime):
         """file size in bytes and timestamp as datetime"""
         if not os.path.exists(file_path):
@@ -212,6 +220,10 @@ class Helper:
                 return sys.real_prefix
 
         return sys.prefix
+
+    @classmethod
+    def timestamp(cls):
+        return datetime.now().strftime("%Y%m%d_%H%M%S")
 
     @classmethod
     def truncate_too_long(cls, path, max_path_length=260, left_truncation=False):
