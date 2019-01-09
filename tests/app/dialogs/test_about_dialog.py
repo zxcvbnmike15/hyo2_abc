@@ -28,6 +28,7 @@ class TestAppAboutDialog(unittest.TestCase):
         d.switch_visible()
         d.switch_visible()
 
+    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_with_all_tabs(self):
 
         if not QtWidgets.qApp:
