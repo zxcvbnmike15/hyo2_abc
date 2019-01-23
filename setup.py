@@ -48,6 +48,7 @@ setup(
     setup_requires=[
         "setuptools",
         "wheel",
+        "cython"
     ],
     install_requires=[
         "appdirs",
