@@ -52,6 +52,6 @@ tabs.insertTab(0, t, "Info")
 
 mw.show()
 
-print("browser storage: %s" % t.browser.view.page().profile().persistentStoragePath())
+# print("browser storage: %s" % t.browser.view.page().profile().persistentStoragePath())
 
 sys.exit(app.exec_())
