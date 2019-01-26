@@ -37,9 +37,9 @@ install:
   - source activate test-environment
   - pip install PySide2
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      conda install numpy matplotlib-base gdal pyproj
+      conda install numpy matplotlib-base gdal pyproj;
     else
-      conda install numpy matplotlib-base gdal pyproj libgcc
+      conda install numpy matplotlib-base gdal pyproj libgcc;
     fi
   - conda install numpy matplotlib-base gdal pyproj
   - pip install coveralls
