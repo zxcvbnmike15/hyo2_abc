@@ -1,7 +1,4 @@
-try:
-    import gdal
-except ImportError:
-    from osgeo import gdal
+import gdal
 import ogr
 import osr
 import pyproj
@@ -10,9 +7,9 @@ from typing import Optional
 import os
 import logging
 
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.lib.helper import Helper
+
+logger = logging.getLogger(__name__)
 
 
 class GdalAux:
