@@ -39,9 +39,8 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       conda install numpy matplotlib-base gdal pyproj;
     else
-      conda install numpy matplotlib-base gdal pyproj tensorflow;
+      conda install numpy matplotlib-base gdal==2.3.2 pyproj;
     fi
-  - conda install numpy matplotlib-base gdal pyproj
   - pip install coveralls
   - pip install .
   # - conda remove --force PyQt Qt sip
