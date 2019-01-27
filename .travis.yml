@@ -21,8 +21,6 @@ install:
       curl https://repo.continuum.io/miniconda/Miniconda3-latest-MacOSX-x86_64.sh -o miniconda.sh;
     else
       sudo apt-get update;
-      sudo apt-get install build-essential;
-      sudo apt-get install libstdc++6 gcc-multilib;
       sh -e /etc/init.d/xvfb start;
       wget https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O miniconda.sh;
     fi
@@ -42,6 +40,7 @@ install:
       conda install numpy matplotlib-base gdal pyproj;
     else
       conda install numpy matplotlib-base gdal pyproj;
+      export LD_LIBRARY_PATH=$HOME/miniconda/envs/test-environment/lib:$LD_LIBRARY_PATH;
     fi
   - pip install coveralls
   - pip install .
