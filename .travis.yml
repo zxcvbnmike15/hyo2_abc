@@ -41,10 +41,10 @@ install:
     else
       conda install numpy matplotlib-base gdal pyproj;
       LD_LIBRARY_PATH=/usr/local/lib64/:$LD_LIBRARY_PATH;
-      export LD_LIBRARY_PATH
-      sudo apt-add-repository ppa:ubuntu-toolchain-r/test
-      sudo apt-get update
-      sudo apt-get install gcc-4.9 g++-4.9
+      export LD_LIBRARY_PATH;
+      sudo apt-add-repository ppa:ubuntu-toolchain-r/test;
+      sudo apt-get update;
+      sudo apt-get install gcc-4.9 g++-4.9;
     fi
   - pip install coveralls
   - pip install .
