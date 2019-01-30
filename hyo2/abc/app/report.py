@@ -3,6 +3,7 @@ import datetime
 import logging
 
 from hyo2.abc.lib.helper import Helper
+from hyo2.abc.app.app_info import AppInfo
 
 logger = logging.getLogger(__name__)
 
@@ -65,9 +66,6 @@ class Report:
         # delete the passed filename if it already exists
         if os.path.exists(path):
             os.remove(path)
-
-        # the function will look for resources (images) on the same folder of this script
-        media = os.path.abspath(os.path.join(os.path.dirname(__file__), 'media'))
 
         # prepare some drawing tools
         blue_pen = QtGui.QPen(QtGui.QColor(30, 30, 255))
@@ -144,7 +142,7 @@ class Report:
                                     doc_width - 2*doc_margin, row_height*2)
             painter.drawRect(top_area)
             # logo
-            hyo_logo = QtGui.QPixmap(os.path.join(media, 'poweredby.png'))
+            hyo_logo = QtGui.QPixmap(os.path.join(AppInfo().app_media_path, 'poweredby.png'))
             # print("logo size: %sx%s" % (hyo_logo.width(), hyo_logo.height()))
             logo_area = QtCore.QRect(doc_width/2 - hyo_logo.width()/2,
                                      doc_margin + (row_height*2 - hyo_logo.height())/2,
