@@ -23,6 +23,7 @@ class AppStyle:
 
         with open(style_path) as fid:
             style = fid.read().replace("LOCAL_PATH", media)
+            # print(style)
 
         if platform.system().lower() == 'darwin':  # see issue #12 on github
             mac_fix = '''

@@ -11,7 +11,7 @@ class Testing:
     Just set the root_folder for use with different packages.
     """
 
-    def __init__(self, root_folder: Optional[str]=None):
+    def __init__(self, root_folder: Optional[str] = None):
 
         if root_folder is None:
             self.root_folder = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir, os.pardir, os.pardir))
@@ -65,7 +65,7 @@ class Testing:
     # -- FILES ---
 
     @classmethod
-    def files(cls, folder: str, ext: str, subfolder: Optional[str]=None) -> list:
+    def files(cls, folder: str, ext: str, subfolder: Optional[str] = None) -> list:
         file_list = list()
         for root, _, files in os.walk(folder):
 
@@ -79,15 +79,14 @@ class Testing:
                     file_list.append(os.path.join(root, f))
         return file_list
 
-    def input_test_files(self, ext: str, subfolder: Optional[str]=None) -> list:
+    def input_test_files(self, ext: str, subfolder: Optional[str] = None) -> list:
         return self.files(folder=self.input_data_folder(), ext=ext, subfolder=subfolder)
 
-    def download_test_files(self, ext: str, subfolder: Optional[str]=None) -> list:
+    def download_test_files(self, ext: str, subfolder: Optional[str] = None) -> list:
         return self.files(folder=self.download_data_folder(), ext=ext, subfolder=subfolder)
 
-    def temp_test_files(self, ext: str, subfolder: Optional[str]=None) -> list:
+    def temp_test_files(self, ext: str, subfolder: Optional[str] = None) -> list:
         return self.files(folder=self.temp_data_folder(), ext=ext, subfolder=subfolder)
 
-    def output_test_files(self, ext: str, subfolder: Optional[str]=None) -> list:
+    def output_test_files(self, ext: str, subfolder: Optional[str] = None) -> list:
         return self.files(folder=self.output_data_folder(), ext=ext, subfolder=subfolder)
-
