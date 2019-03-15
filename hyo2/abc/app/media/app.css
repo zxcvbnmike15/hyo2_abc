@@ -364,8 +364,8 @@ QTabBar::tab:top {
     border: 1px solid #76797C;
     border-bottom: 1px transparent black;
     margin: 0px;
-    padding: 4px 4px 4px 17px;
-    min-width: 30px;
+    padding: 4px 4px 4px 16px;
+    min-width: 20px;
     border-top-left-radius: 8px;
     border-top-right-radius: 8px;
 }
@@ -385,8 +385,8 @@ QTabBar::tab:bottom {
     background-color: #fefdfc;
     border: 1px solid #76797C;
     border-top: 1px transparent black;
-    padding: 4px 4px 4px 4px;
-    min-width: 30px;
+    padding: 2px 2px 2px 14px;
+    min-width: 20px;
     border-bottom-left-radius: 8px;
     border-bottom-right-radius: 8px;
 }
