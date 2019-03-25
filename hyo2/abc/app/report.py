@@ -142,9 +142,10 @@ class Report:
                                     doc_width - 2*doc_margin, row_height*2)
             painter.drawRect(top_area)
             # logo
-            hyo_logo = QtGui.QPixmap(os.path.join(AppInfo().app_media_path, 'poweredby.png'))
-            if not os.path.exists(hyo_logo):
+            hyo_logo_path = os.path.join(AppInfo().app_media_path, 'poweredby.png')
+            if not os.path.exists(hyo_logo_path):
                 raise RuntimeError("Unable to find logo: %s" % hyo_logo)
+            hyo_logo = QtGui.QPixmap(hyo_logo_path)
             # print("logo size: %sx%s" % (hyo_logo.width(), hyo_logo.height()))
             logo_area = QtCore.QRect(doc_width/2 - hyo_logo.width()/2,
                                      doc_margin + (row_height*2 - hyo_logo.height())/2,
