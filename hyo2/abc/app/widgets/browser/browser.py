@@ -4,16 +4,16 @@ import logging
 
 from PySide2 import QtCore, QtGui, QtWidgets, QtWebEngineWidgets
 
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.app.widgets.browser.download_widget import DownloadWidget
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.lib.helper import Helper
 
+logger = logging.getLogger(__name__)
+
 
 class Browser(QtWidgets.QMainWindow):
 
-    def __init__(self, parent: Optional[QtWidgets.QWidget]=None, url: str="https://www.hydroffice.org") -> None:
+    def __init__(self, parent: Optional[QtWidgets.QWidget] = None, url: str = "https://www.hydroffice.org") -> None:
         super().__init__(parent)
 
         self.setWindowTitle('Browser')
@@ -26,7 +26,6 @@ class Browser(QtWidgets.QMainWindow):
         self.addToolBar(self._tool_bar)
         for action in self._actions.values():
             if not action.icon().isNull():
-
                 self._tool_bar.addAction(action)
 
         self.address_line_edit = QtWidgets.QLineEdit()
