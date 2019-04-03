@@ -28,7 +28,7 @@ class TestAppNOAAS57Dialog(unittest.TestCase):
 
         noaa_support = NOAASupport(lib_info=LibInfo(), app_info=AppInfo())
 
-        self.assertTrue("_" in noaa_support.underscored_version())
+        self.assertTrue("v" in noaa_support.v_version())
         self.assertTrue(os.path.exists(noaa_support.internal_zip_path()))
         self.assertTrue(noaa_support.internal_zip_path_exists())
 

@@ -21,7 +21,7 @@ class NOAASupport:
     support_version = "2019.0"
 
     @classmethod
-    def underscored_version(cls):
+    def v_version(cls):
         return cls.support_version.replace(".", "v")
 
     def __init__(self, lib_info: LibInfo, app_info: AppInfo, progress=CliProgress()):
@@ -29,7 +29,7 @@ class NOAASupport:
         self._ai = app_info
         self.progress = progress
         self.local_zip_path = os.path.abspath(os.path.join(Helper(lib_info=self._li).package_folder(),
-                                                           "Caris_Support_Files_%s.zip" % self.underscored_version()))
+                                                           "Caris_Support_Files_%s.zip" % self.v_version()))
         self.local_batch_file = None
 
     # internal zip
@@ -37,7 +37,7 @@ class NOAASupport:
     def internal_zip_path(self):
         for item in os.listdir(self.media):
             candidate_path = os.path.join(self.media, item)
-            if (("Caris_Support_Files_%s" % self.underscored_version()) in item) \
+            if (("Caris_Support_Files_%s" % self.v_version()) in item) \
                     and (os.path.splitext(candidate_path)[-1] == ".zip"):
                 return candidate_path
         return str()
@@ -89,7 +89,7 @@ class NOAASupport:
             # ftp.ocsftp.ncd.noaa.gov
             ftp = Ftp("205.156.4.84", show_progress=True, debug_mode=False,
                       progress=self.progress)
-            data_zip_src = "HSD/Customization_Files/CARIS/Caris_Support_Files_%s.zip" % self.underscored_version()
+            data_zip_src = "HSD/Customization_Files/CARIS/Caris_Support_Files_%s.zip" % self.v_version()
             ftp.get_file(data_zip_src, self.local_zip_path, unzip_it=True)
             return self.local_noaa_support_folder_present()
 
@@ -108,7 +108,7 @@ class NOAASupport:
         try:
             ftp = Ftp("ftp.ccom.unh.edu", show_progress=True, debug_mode=False,
                       progress=self.progress)
-            data_zip_src = "fromccom/hydroffice/Caris_Support_Files_%s.zip" % self.underscored_version()
+            data_zip_src = "fromccom/hydroffice/Caris_Support_Files_%s.zip" % self.v_version()
             ftp.get_file(data_zip_src, self.local_zip_path, unzip_it=True)
             return self.local_noaa_support_folder_present()
 
@@ -152,7 +152,7 @@ class NOAASupport:
             if os.path.isfile(candidate_path):
                 continue
 
-            if ("Caris_Support_Files_%s" % self.underscored_version()) in folder:
+            if ("Caris_Support_Files_%s" % self.v_version()) in folder:
 
                 try:
                     # remove all the content
@@ -180,7 +180,7 @@ class NOAASupport:
             if os.path.isdir(candidate_path):
                 continue
 
-            if ("Caris_Support_Files_%s" % self.underscored_version()) in item:
+            if ("Caris_Support_Files_%s" % self.v_version()) in item:
 
                 if os.path.splitext(candidate_path)[-1] == ".txt":
                     logger.debug("copy and rename .txt to .bat")
@@ -211,7 +211,7 @@ class NOAASupport:
 
         for folder in os.listdir(cls.caris_root):
             # logger.debug("folder: %s" % folder)
-            if ("Caris_Support_Files_%s" % cls.underscored_version()) in folder:
+            if ("Caris_Support_Files_%s" % cls.v_version()) in folder:
                 return os.path.join(cls.caris_root, folder)
 
         return str()
@@ -277,7 +277,7 @@ class NOAASupport:
             if os.path.isdir(candidate_path):
                 continue
 
-            if ("Caris_Support_Files_%s" % self.underscored_version()) in item:
+            if ("Caris_Support_Files_%s" % self.v_version()) in item:
 
                 if os.path.splitext(candidate_path)[-1] == ".txt":
                     logger.debug("copy and rename .txt to .bat")
