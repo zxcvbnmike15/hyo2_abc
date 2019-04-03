@@ -1,13 +1,14 @@
 import logging
 from PySide2 import QtWidgets
 
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.app.qt_progress import QtProgress
 from hyo2.abc.app.dialogs.noaa_s57.noaa_support import NOAASupport
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_info import AppInfo
+
+
+logging.basicConfig(level=logging.DEBUG)
+logger = logging.getLogger(__name__)
 
 use_setup = 0  # 0: internal, 1: NOAA, 2: CCOM
 delete_local_folder = False

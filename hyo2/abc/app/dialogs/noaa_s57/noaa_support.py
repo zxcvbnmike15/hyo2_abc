@@ -18,11 +18,11 @@ class NOAASupport:
 
     media = os.path.join(os.path.dirname(__file__), "media")
     caris_root = "C:\\CARIS"
-    support_version = "5.8"
+    support_version = "2019.0"
 
     @classmethod
     def underscored_version(cls):
-        return cls.support_version.replace(".", "_")
+        return cls.support_version.replace(".", "v")
 
     def __init__(self, lib_info: LibInfo, app_info: AppInfo, progress=CliProgress()):
         self._li = lib_info
