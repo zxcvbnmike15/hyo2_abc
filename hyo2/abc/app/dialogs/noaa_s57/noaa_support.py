@@ -5,13 +5,13 @@ import traceback
 import zipfile
 import logging
 
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.lib.progress.cli_progress import CliProgress
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_info import AppInfo
 from hyo2.abc.lib.helper import Helper
 from hyo2.abc.lib.ftp import Ftp
+
+logger = logging.getLogger(__name__)
 
 
 class NOAASupport:

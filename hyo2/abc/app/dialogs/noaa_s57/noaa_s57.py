@@ -3,13 +3,13 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 import logging
 
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.lib.helper import Helper
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_info import AppInfo
 from hyo2.abc.app.dialogs.noaa_s57.noaa_support import NOAASupport
 from hyo2.abc.app.qt_progress import QtProgress
+
+logger = logging.getLogger(__name__)
 
 
 class NOAAS57Dialog(QtWidgets.QDialog):
@@ -134,7 +134,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
                   "- %s\n\n" \
                   "Do you want to force to re-unzip it? If no, go to step #2." \
                   % noaa_support.local_noaa_support_folder()
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             ret = QtWidgets.QMessageBox.information(self, "Unzip folder", msg,
                                                     QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
             if ret == QtWidgets.QMessageBox.No:
@@ -163,15 +163,16 @@ class NOAAS57Dialog(QtWidgets.QDialog):
             if success:
                 unzipped = True
 
+        # noinspection PyArgumentList
         if unzipped and noaa_support.local_noaa_support_folder_present():
             msg = "Success! Go to step #2."
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             QtWidgets.QMessageBox.information(self, "Unzip done!", msg, QtWidgets.QMessageBox.Ok)
             return
 
         else:
             msg = "Unable to unzip the archive. Do you have a working Internet connection?"
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             QtWidgets.QMessageBox.critical(self, "Error", msg, QtWidgets.QMessageBox.Ok)
             return
 
@@ -183,7 +184,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
         if not noaa_support.local_noaa_support_folder_present():
             msg = "The support folder is not present!\n" \
                   "Did you unzip it? Go to step #1."
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             QtWidgets.QMessageBox.information(self, "Copy folder", msg, QtWidgets.QMessageBox.Ok)
             return
 
@@ -191,7 +192,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
             msg = "The support folder was already copied:\n" \
                   "- %s\n\n" \
                   "Do you want to force the re-copy? If no, go to step #3." % noaa_support.system_noaa_support_folder()
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             ret = QtWidgets.QMessageBox.information(self, "Copy folder", msg,
                                                     QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
             if ret == QtWidgets.QMessageBox.No:
@@ -202,7 +203,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
         logger.info(copied)
         if copied and noaa_support.system_noaa_support_folder_present():
             msg = "Success! Go to step #3."
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             QtWidgets.QMessageBox.information(self, "Copy done!", msg, QtWidgets.QMessageBox.Ok)
             return
 
@@ -213,7 +214,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
                   "- %s\n" \
                   "Try to manually do the copy or re-run QC Tools as administrator." \
                   % (noaa_support.local_noaa_support_folder(), noaa_support.caris_root)
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             QtWidgets.QMessageBox.critical(self, "Error", msg, QtWidgets.QMessageBox.Ok)
             return
 
@@ -226,7 +227,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
               "with all other users logged off the system.\n" \
               "Once executed, follow the instructions in the Windows shell.\n\n" \
               "Do you want to continue with the installation?"
-        # noinspection PyCallByClass
+        # noinspection PyCallByClass,PyArgumentList
         ret = QtWidgets.QMessageBox.information(self, "Install files", msg,
                                                 QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
         if ret == QtWidgets.QMessageBox.No:
@@ -235,14 +236,14 @@ class NOAAS57Dialog(QtWidgets.QDialog):
         if not noaa_support.system_noaa_support_folder_present():
             msg = "The support folder is not present!\n" \
                   "Did you copy it? Go to step #2."
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             QtWidgets.QMessageBox.information(self, "Install files", msg, QtWidgets.QMessageBox.Ok)
             return
 
         if not noaa_support.system_batch_file_exists():
             msg = "The batch file does not exist!\n" \
                   "Did you execute steps #1 and #2? Try to execute them again."
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             QtWidgets.QMessageBox.information(self, "Install files", msg, QtWidgets.QMessageBox.Ok)
             return
 
@@ -252,7 +253,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
                   "Do you want that CA Tools executes the batch file?\n\n" \
                   "You will be prompted for permissions.\n"
 
-            # noinspection PyCallByClass
+            # noinspection PyCallByClass,PyArgumentList
             ret = QtWidgets.QMessageBox.information(self, "Install files", msg,
                                                     QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
             if ret == QtWidgets.QMessageBox.No:
@@ -265,7 +266,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
                       "For option #2, do you want that CA Tools open the folder with the batch file?" \
                       % (noaa_support.system_batch_file())
 
-                # noinspection PyCallByClass
+                # noinspection PyCallByClass,PyArgumentList
                 ret = QtWidgets.QMessageBox.information(self, "Install files", msg,
                                                         QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
                 if ret == QtWidgets.QMessageBox.Yes:
@@ -275,7 +276,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
             installed = noaa_support.exec_system_batch()
             if installed:
                 msg = "Follow the instruction in the windows shell!"
-                # noinspection PyCallByClass
+                # noinspection PyCallByClass,PyArgumentList
                 QtWidgets.QMessageBox.information(self, "Windows shell", msg, QtWidgets.QMessageBox.Ok)
                 return
 
@@ -283,7 +284,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
                 msg = "Unable to install the support files.\n" \
                       "Try to manually run as administrator the batch file at: %s\n\n" \
                       % (noaa_support.system_batch_file())
-                # noinspection PyCallByClass
+                # noinspection PyCallByClass,PyArgumentList
                 QtWidgets.QMessageBox.critical(self, "Error", msg, QtWidgets.QMessageBox.Ok)
                 noaa_support.open_system_noaa_support_folder()
                 return
@@ -293,7 +294,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
             installed = noaa_support.exec_system_batch()
             if installed:
                 msg = "Success!"
-                # noinspection PyCallByClass
+                # noinspection PyCallByClass,PyArgumentList
                 QtWidgets.QMessageBox.information(self, "Installation done!", msg, QtWidgets.QMessageBox.Ok)
                 return
 
@@ -301,7 +302,7 @@ class NOAAS57Dialog(QtWidgets.QDialog):
                 msg = "Unable to install the support files.\n" \
                       "Try to manually run as administrator the batch file at: %s\n\n" \
                       % (noaa_support.system_batch_file())
-                # noinspection PyCallByClass
+                # noinspection PyCallByClass,PyArgumentList
                 QtWidgets.QMessageBox.critical(self, "Error", msg, QtWidgets.QMessageBox.Ok)
                 noaa_support.open_system_noaa_support_folder()
                 return
@@ -310,5 +311,5 @@ class NOAAS57Dialog(QtWidgets.QDialog):
     def click_open_manual(cls):
         logger.debug("open manual")
         Helper.explore_folder(
-            "https://www.hydroffice.org/manuals/catools/user_manual_info.html#noaa-s-57-support-files-for-caris"
+            "https://www.hydroffice.org/manuals/abc/user_manual_info.html#noaa-s-57-support-files-for-caris"
         )
