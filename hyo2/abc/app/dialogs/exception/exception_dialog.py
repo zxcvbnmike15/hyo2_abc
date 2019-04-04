@@ -4,33 +4,23 @@ import os
 import traceback
 from types import TracebackType
 from typing import Optional, Sequence, Union
-from PySide2.QtCore import (
-    Qt, QObject, QUrl, QUrlQuery
-)
-from PySide2.QtGui import (
-    QDesktopServices, QIcon
-)
-from PySide2.QtWidgets import (
-    QApplication, QDialog, QHBoxLayout, QVBoxLayout, QTextBrowser, QLabel, QGroupBox,
-    QDialogButtonBox, QPushButton, QMessageBox, QFileDialog
-)
+from PySide2 import QtCore, QtGui, QtWidgets
 
 import logging
-
-logger = logging.getLogger(__name__)
 
 from hyo2.abc.app.app_info import AppInfo
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.lib.helper import Helper
 
+logger = logging.getLogger(__name__)
 
-class ExceptionDialog(QDialog):
 
+class ExceptionDialog(QtWidgets.QDialog):
     media = os.path.join(os.path.dirname(__file__), "media")
 
     def __init__(self, app_info: AppInfo, lib_info: LibInfo,
-                 ex_type: Optional[type]=None, ex_value: Optional[BaseException]=None,
-                 tb: Optional[TracebackType]=None, parent: Optional[QObject]=None):
+                 ex_type: Optional[type] = None, ex_value: Optional[BaseException] = None,
+                 tb: Optional[TracebackType] = None, parent: Optional[QtCore.QObject] = None):
         super().__init__(parent)
 
         self._ai = app_info
@@ -47,18 +37,21 @@ class ExceptionDialog(QDialog):
             self.setWindowTitle("User Bug Report")
         else:
             self.setWindowTitle("Critical Error")
-        self.setWindowIcon(QIcon(os.path.join(self.media, "bug.png")))
+        self.setWindowIcon(QtGui.QIcon(os.path.join(self.media, "bug.png")))
+        # noinspection PyArgumentList
         self.setMinimumSize(200, 200)
+        # noinspection PyArgumentList
         self.resize(500, 300)
 
-        self.main_layout = QHBoxLayout(self)
+        self.main_layout = QtWidgets.QHBoxLayout(self)
 
         # left layout
 
-        self.left_layout = QVBoxLayout()
-        self.icon_label = QLabel(self)
+        self.left_layout = QtWidgets.QVBoxLayout()
+        self.icon_label = QtWidgets.QLabel(self)
         self.icon_label.setPixmap(os.path.abspath(os.path.join(self.media, "bug.png")))
         self.icon_label.setScaledContents(True)
+        # noinspection PyArgumentList
         self.icon_label.setFixedSize(96, 96)
         self.left_layout.addWidget(self.icon_label)
         self.left_layout.addStretch()
@@ -66,48 +59,49 @@ class ExceptionDialog(QDialog):
 
         # right layout
 
-        self.right_layout = QVBoxLayout()
+        self.right_layout = QtWidgets.QVBoxLayout()
 
-        self.error_msg_label = QLabel(self)
-        self.error_msg_label.setAlignment(Qt.AlignLeading | Qt.AlignLeft | Qt.AlignTop)
+        self.error_msg_label = QtWidgets.QLabel(self)
+        self.error_msg_label.setAlignment(QtCore.Qt.AlignLeading | QtCore.Qt.AlignLeft | QtCore.Qt.AlignTop)
         self.error_msg_label.setWordWrap(True)
         self.error_msg_label.setOpenExternalLinks(True)
-        self.error_msg_label.setTextInteractionFlags(Qt.LinksAccessibleByMouse | Qt.TextSelectableByMouse)
+        self.error_msg_label.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse | QtCore.Qt.TextSelectableByMouse)
         self.right_layout.addWidget(self.error_msg_label)
 
-        self.tb_groupbox = QGroupBox(self)
+        self.tb_groupbox = QtWidgets.QGroupBox(self)
         self.tb_groupbox.setCheckable(True)
         self.tb_groupbox.setObjectName("tracebackGroupBox")
-        self.tb_layout = QVBoxLayout(self.tb_groupbox)
-        self.tb_editor = QTextBrowser(self.tb_groupbox)
-        self.tb_editor.setLineWrapMode(QTextBrowser.NoWrap)
-        if self.user_triggered:
-            self.tb_editor.setReadOnly(False)
-        else:
-            self.tb_editor.setReadOnly(True)
+        self.tb_layout = QtWidgets.QVBoxLayout(self.tb_groupbox)
+        self.tb_editor = QtWidgets.QTextBrowser(self.tb_groupbox)
+        self.tb_editor.setLineWrapMode(QtWidgets.QTextBrowser.NoWrap)
         self.tb_editor.setPlainText("")
-        self.tb_editor.setTextInteractionFlags(Qt.TextSelectableByKeyboard | Qt.TextSelectableByMouse)
+        self.tb_editor.setTextInteractionFlags(QtCore.Qt.TextSelectableByKeyboard | QtCore.Qt.TextSelectableByMouse)
         self.tb_layout.addWidget(self.tb_editor)
         # noinspection PyUnresolvedReferences
         self.tb_groupbox.toggled[bool].connect(self.tb_editor.setVisible)
         self.right_layout.addWidget(self.tb_groupbox)
+        if self.user_triggered:
+            self.tb_editor.setReadOnly(False)
+            logger.debug("editable-text mode")
+        else:
+            self.tb_editor.setReadOnly(True)
 
-        self.text_label = QLabel(self)
+        self.text_label = QtWidgets.QLabel(self)
         text = "Please create a <a href=\"https://github.com/hydroffice/hyo2_openbst/issues\">bug report</a>" \
                " or write an email to <a href=\"mailto:%s\">%s</a>." \
                % (app_info.app_support_email, app_info.app_support_email)
         self.text_label.setWordWrap(True)
         self.text_label.setText(text)
-        self.text_label.setTextInteractionFlags(Qt.LinksAccessibleByMouse | Qt.TextSelectableByMouse)
+        self.text_label.setTextInteractionFlags(QtCore.Qt.LinksAccessibleByMouse | QtCore.Qt.TextSelectableByMouse)
         # noinspection PyUnresolvedReferences
         self.text_label.linkActivated.connect(self.link_activated)
         self.right_layout.addWidget(self.text_label)
 
         self.right_layout.addSpacing(12)
 
-        self.buttons_groupbox = QDialogButtonBox(self)
-        self.buttons_groupbox.setOrientation(Qt.Horizontal)
-        self.buttons_groupbox.setStandardButtons(QDialogButtonBox.Close | QDialogButtonBox.Ignore)
+        self.buttons_groupbox = QtWidgets.QDialogButtonBox(self)
+        self.buttons_groupbox.setOrientation(QtCore.Qt.Horizontal)
+        self.buttons_groupbox.setStandardButtons(QtWidgets.QDialogButtonBox.Close | QtWidgets.QDialogButtonBox.Ignore)
         self.right_layout.addWidget(self.buttons_groupbox)
         # noinspection PyUnresolvedReferences
         self.buttons_groupbox.accepted.connect(self.accept)
@@ -115,17 +109,17 @@ class ExceptionDialog(QDialog):
         self.buttons_groupbox.rejected.connect(self.reject)
 
         # noinspection PyArgumentList
-        style = QApplication.style()
+        style = QtWidgets.QApplication.style()
 
-        self.email_button = QPushButton(style.standardIcon(style.SP_CommandLink), 'Email',
-                                        toolTip='Send the bug report via email.', autoDefault=False,
-                                        clicked=self.email_bug_report)
-        self.buttons_groupbox.addButton(self.email_button, QDialogButtonBox.ActionRole)
+        self.email_button = QtWidgets.QPushButton(style.standardIcon(style.SP_CommandLink), 'Email',
+                                                  toolTip='Send the bug report via email.', autoDefault=False,
+                                                  clicked=self.email_bug_report)
+        self.buttons_groupbox.addButton(self.email_button, QtWidgets.QDialogButtonBox.ActionRole)
 
-        self.save_button = QPushButton(style.standardIcon(style.SP_DialogSaveButton), 'Save',
-                                       toolTip='Save the bug report on file.', autoDefault=False,
-                                       clicked=self.save_bug_report)
-        self.buttons_groupbox.addButton(self.save_button, QDialogButtonBox.ActionRole)
+        self.save_button = QtWidgets.QPushButton(style.standardIcon(style.SP_DialogSaveButton), 'Save',
+                                                 toolTip='Save the bug report on file.', autoDefault=False,
+                                                 clicked=self.save_bug_report)
+        self.buttons_groupbox.addButton(self.save_button, QtWidgets.QDialogButtonBox.ActionRole)
 
         self.right_layout.addStretch()
 
@@ -241,19 +235,19 @@ class ExceptionDialog(QDialog):
         body += "-" * 120 + "\n"
         body += "".join(self.format_bug_report())
 
-        url = QUrl("mailto:%s <%s>" % (self._ai.app_support_email, self._ai.app_support_email))
-        url_query = QUrlQuery()
+        url = QtCore.QUrl("mailto:%s <%s>" % (self._ai.app_support_email, self._ai.app_support_email))
+        url_query = QtCore.QUrlQuery()
         url_query.addQueryItem("subject", subject)
         url_query.addQueryItem("body", body)
         url.setQuery(url_query)
 
-        # noinspection PyCallByClass
-        ret = QDesktopServices.openUrl(url)
+        # noinspection PyCallByClass,PyArgumentList
+        ret = QtGui.QDesktopServices.openUrl(url)
         if not ret:
             msg = "Issue in transmitting the bug report.\n" \
                   "Save the bug report on file and transmit it manually."
-            # noinspection PyCallByClass
-            QMessageBox.warning(self, "Emailing Issue", msg)
+            # noinspection PyCallByClass,PyArgumentList
+            QtWidgets.QMessageBox.warning(self, "Emailing Issue", msg)
 
     def save_bug_report(self):
         logger.debug("save bug report")
@@ -262,8 +256,8 @@ class ExceptionDialog(QDialog):
         hint_name = "%s_%s_bug_%.0f" \
                     % (self._ai.app_name, self._ai.app_version.replace(".", "_"), datetime.utcnow().timestamp())
         # noinspection PyCallByClass
-        filename, _ = QFileDialog.getSaveFileName(self, "Bug Report", hint_name,
-                                                  "Text files (*.txt)", "Text files (*.txt)")
+        filename, _ = QtWidgets.QFileDialog.getSaveFileName(self, "Bug Report", hint_name,
+                                                            "Text files (*.txt)", "Text files (*.txt)")
         if filename:
             fd = open(filename, 'w')
             try:
@@ -272,8 +266,8 @@ class ExceptionDialog(QDialog):
                 Helper.explore_folder(filename)
             except Exception as e:
                 msg = 'Unable to save the bug report:\n%s' % str(e)
-                # noinspection PyCallByClass
-                QMessageBox.warning(self, "Saving issue", msg)
+                # noinspection PyCallByClass,PyArgumentList
+                QtWidgets.QMessageBox.warning(self, "Saving issue", msg)
 
     def link_activated(self, url):
         if "mailto:" in url:
