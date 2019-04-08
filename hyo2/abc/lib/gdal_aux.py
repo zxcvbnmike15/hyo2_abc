@@ -109,7 +109,10 @@ class GdalAux:
             gdal.CE_Failure: 'Failure',
             gdal.CE_Fatal: 'Fatal'
         }
-        err_msg = err_msg.replace('\n', ' ')
+        try:
+            err_msg = err_msg.replace('\n', ' ')
+        except Exception as e:
+            logger.warning("skip the new-line replacement: %s" % e)
         err_class = err_type.get(err_class, 'None')
 
         raise RuntimeError("%s: gdal error %s > %s" % (err_class, err_num, err_msg))
