@@ -41,7 +41,7 @@ install:
 
   - pip install coveralls
   - pip install PySide2
-  - conda install numpy matplotlib-base gdal pyproj
+  - conda install numpy matplotlib-base gdal pyproj appdirs bidict coverage psutil
 
 build: off
 build_script:
