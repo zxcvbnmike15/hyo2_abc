@@ -297,6 +297,7 @@ class Helper:
         msg = str()
 
         msg += style_row("General Info", is_h2=True)
+        msg += style_row("version: %s" % self._li.lib_version)
         msg += style_row("author: %s" % style_mailto(self._li.lib_author, self._li.lib_author_email))
         msg += style_row("support: %s" % style_mailto(self._li.lib_support_email, self._li.lib_support_email))
         msg += style_row("website: %s" % style_url(self._li.lib_url, self._li.lib_url))
