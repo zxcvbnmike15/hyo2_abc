@@ -269,9 +269,28 @@ class GdalAux:
             cls.proj4_data_fixed = True
             return
 
+        try:
+            import conda
+
+            conda_file_dir = conda.__file__
+            conda_dir = conda_file_dir.split('lib')[0]
+            proj4_data_path5 = os.path.join(os.path.join(conda_dir, 'share'), 'proj')
+            epsg_path5 = os.path.join(proj4_data_path5, 'epsg')
+            if os.path.exists(epsg_path5):
+
+                os.environ['PROJ_LIB'] = proj4_data_path5
+                if hasattr(pyproj, 'pyproj_datadir'):
+                    pyproj.pyproj_datadir = proj4_data_path5
+                logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+                cls.proj4_data_fixed = True
+                return
+
+        except Exception as e:
+            logger.warning("%s" % e)
+
         # TODO: add more cases to find PROJ_LIB
 
-        raise RuntimeError("Unable to locate PROJ4 data at:\n- %s\n- %s\n- %s\n- %s"
+        raise RuntimeError("Unable to locate PROJ4 data at:\n- %s\n- %s\n- %s\n- %s\n- Conda/share/proj"
                            % (proj4_data_path1, proj4_data_path2, proj4_data_path3, proj4_data_path4))
 
     @classmethod
