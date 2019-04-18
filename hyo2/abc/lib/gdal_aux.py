@@ -213,8 +213,9 @@ class GdalAux:
         if cls.proj4_data_fixed:
             return
 
-        if os.path.exists(os.path.join(pyproj.pyproj_datadir, "epsg")):
-            return
+        if hasattr(pyproj, 'pyproj_datadir'):
+            if os.path.exists(os.path.join(pyproj.pyproj_datadir, "epsg")):
+                return
 
         if 'PROJ_LIB' in os.environ:
 
@@ -226,7 +227,8 @@ class GdalAux:
         if os.path.exists(epsg_path1):
 
             os.environ['PROJ_LIB'] = proj4_data_path1
-            pyproj.pyproj_datadir = proj4_data_path1
+            if hasattr(pyproj, 'pyproj_datadir'):
+                pyproj.pyproj_datadir = proj4_data_path1
             logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
@@ -237,7 +239,8 @@ class GdalAux:
         if os.path.exists(epsg_path2):
 
             os.environ['PROJ_LIB'] = proj4_data_path2
-            pyproj.pyproj_datadir = proj4_data_path2
+            if hasattr(pyproj, 'pyproj_datadir'):
+                pyproj.pyproj_datadir = proj4_data_path2
             logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
@@ -248,7 +251,8 @@ class GdalAux:
         if os.path.exists(epsg_path3):
 
             os.environ['PROJ_LIB'] = proj4_data_path3
-            pyproj.pyproj_datadir = proj4_data_path3
+            if hasattr(pyproj, 'pyproj_datadir'):
+                pyproj.pyproj_datadir = proj4_data_path3
             logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
@@ -259,7 +263,8 @@ class GdalAux:
         if os.path.exists(epsg_path4):
 
             os.environ['PROJ_LIB'] = proj4_data_path4
-            pyproj.pyproj_datadir = proj4_data_path4
+            if hasattr(pyproj, 'pyproj_datadir'):
+                pyproj.pyproj_datadir = proj4_data_path4
             logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
