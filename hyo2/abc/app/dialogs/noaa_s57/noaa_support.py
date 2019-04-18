@@ -134,7 +134,7 @@ class NOAASupport:
         return noaa_support_basename.replace("Caris_Support_Files_", "").replace("_", ".")
 
     def local_noaa_support_folder_present(self):
-        return self.local_noaa_support_folder() != ""
+        return os.path.basename(self.local_noaa_support_folder()) == "Caris_Support_Files_%s" % self.v_version()
 
     def delete_local_noaa_support_files(self):
 
