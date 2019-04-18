@@ -57,7 +57,7 @@ setup(
         "numpy",
         "matplotlib",
         "PySide2",
-        # "gdal",  # 18042919: temporarily removing it for CI issues
+        "gdal",
         "pyproj",
         "psutil"
     ],
