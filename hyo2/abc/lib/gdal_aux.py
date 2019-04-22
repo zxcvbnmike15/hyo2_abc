@@ -1,6 +1,6 @@
-import gdal
-import ogr
-import osr
+from osgeo import gdal
+from osgeo import ogr
+from osgeo import osr
 import pyproj
 
 from typing import Optional

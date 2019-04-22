@@ -1,5 +1,5 @@
 import logging
-import gdal
+from osgeo import gdal
 from PySide2 import QtCore, QtWidgets
 
 logger = logging.getLogger(__name__)

@@ -131,7 +131,7 @@ class Helper:
         if not cls.is_pydro():
             raise RuntimeError("this method should be called only within a Pydro environment")
 
-        folder = os.path.join(cls.hstb_folder(), "..\..\..\supplementals")
+        folder = os.path.join(cls.hstb_folder(), os.pardir, os.pardir, os.pardir, "supplementals")
         if not os.path.exists(folder):
             os.mkdir(folder)
         return folder
