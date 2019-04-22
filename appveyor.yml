@@ -41,8 +41,7 @@ install:
 
   - pip install coveralls
   - pip install PySide2
-  - conda install -c conda-forge/label/cf201901 proj4
-  - conda install numpy matplotlib-base gdal pyproj appdirs bidict coverage psutil
+  - conda install numpy matplotlib-base gdal pyproj proj4=5.2.0 appdirs bidict coverage psutil
 
 build: off
 build_script:

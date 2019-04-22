@@ -36,11 +36,10 @@ install:
   - conda create -q -n test-environment python=$PYTHON_VERSION
   - source activate test-environment
   - pip install PySide2
-  - conda install -c conda-forge/label/cf201901 proj4
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      conda install numpy matplotlib-base pyproj gdal;
+      conda install numpy matplotlib-base pyproj proj4=5.2.0 gdal;
     else
-      conda install numpy matplotlib-base pyproj gdal;
+      conda install numpy matplotlib-base pyproj proj4=5.2.0 gdal;
       export LD_LIBRARY_PATH=$HOME/miniconda/envs/test-environment/lib:$LD_LIBRARY_PATH;
     fi
   - pip install coveralls
