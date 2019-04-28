@@ -63,11 +63,16 @@ class QtProgress(AbstractProgress):
 
         if value is not None:
             if (value < self._value) and not restart:
-                raise RuntimeError('attempt to update current progress value (%d) with a smaller value (%d)'
-                                   % (self._value, value))
-            if (value < self._min) or (value > self._max):
-                raise RuntimeError('attempt to update current progress value (%d) outside valid range(%s %s)'
-                                   % (value, self._min, self._max))
+                logger.warning('attempt to update current progress value (%d) with a smaller value (%d)'
+                               % (self._value, value))
+            if value < self._min:
+                logger.warning('attempt to update current progress value (%d) < valid range(%s %s)'
+                               % (value, self._min, self._max))
+                value = self._min
+            if value > self._max:
+                logger.warning('attempt to update current progress value (%d) > valid range(%s %s)'
+                               % (value, self._min, self._max))
+                value = self._max
             self._value = value
 
         if text is not None:
@@ -82,11 +87,16 @@ class QtProgress(AbstractProgress):
         tmp_value = self._value + quantum
 
         if tmp_value < self._value:
-            raise RuntimeError('attempt to update current progress value (%d) with a smaller value (%d)'
-                               % (self._value, tmp_value))
-        if (tmp_value < self._min) or (tmp_value > self._max):
-            raise RuntimeError('attempt to update current progress value (%d) outside valid range(%s %s)'
-                               % (tmp_value, self._min, self._max))
+            logger.warning('attempt to update current progress value (%d) with a smaller value (%d)'
+                           % (self._value, tmp_value))
+        if tmp_value < self._min:
+            logger.warning('attempt to update current progress value (%d) < valid range(%s %s)'
+                           % (tmp_value, self._min, self._max))
+            tmp_value = self._min
+        if tmp_value > self._max:
+            logger.warning('attempt to update current progress value (%d) > valid range(%s %s)'
+                           % (tmp_value, self._min, self._max))
+            tmp_value = self._max
 
         self._value = tmp_value
         if text is not None:
