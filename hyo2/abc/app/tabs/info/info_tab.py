@@ -209,15 +209,18 @@ class InfoTab(QtWidgets.QMainWindow):
         url = 'https://www.hydroffice.org'
         self.browser.change_url(url)
 
-    def load_noaa_ocs_gov(self):
+    @classmethod
+    def load_noaa_ocs_gov(cls):
         url = 'https://www.nauticalcharts.noaa.gov/'
         Helper.explore_folder(url)
 
-    def load_ccom_unh_edu(self):
+    @classmethod
+    def load_ccom_unh_edu(cls):
         url = 'https://ccom.unh.edu'
         Helper.explore_folder(url)
 
-    def load_unh_edu(self):
+    @classmethod
+    def load_unh_edu(cls):
         url = 'https://www.unh.edu'
         Helper.explore_folder(url)
 
