@@ -5,10 +5,10 @@ from hyo2.abc.app.qt_progress import QtProgress
 from hyo2.abc.app.dialogs.noaa_s57.noaa_support import NOAASupport
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_info import AppInfo
+from hyo2.abc.lib.logging import set_logging
 
-
-logging.basicConfig(level=logging.DEBUG)
 logger = logging.getLogger(__name__)
+set_logging(ns_list=["hyo2.abc"])
 
 use_setup = 0  # 0: internal, 1: NOAA, 2: CCOM
 delete_local_folder = False

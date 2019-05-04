@@ -1,10 +1,11 @@
 import logging
 
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.lib.helper import Helper
 from hyo2.abc.lib.lib_info import LibInfo
+from hyo2.abc.lib.logging import set_logging
+
+logger = logging.getLogger(__name__)
+set_logging(ns_list=["hyo2.abc"])
 
 h = Helper(lib_info=LibInfo())
 

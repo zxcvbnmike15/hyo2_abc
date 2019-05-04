@@ -1,4 +1,3 @@
-import logging
 import sys
 from PySide2 import QtWidgets, QtGui
 
@@ -6,18 +5,10 @@ from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_style import AppStyle
 from hyo2.abc.app.app_info import AppInfo
 from hyo2.abc.app.tabs.info.info_tab import InfoTab
+from hyo2.abc.lib.logging import set_logging
 
 
-def set_logging(default_logging=logging.WARNING, hyo2_logging=logging.INFO, abc_logging=logging.DEBUG):
-    logging.basicConfig(
-        level=default_logging,
-        format="%(levelname)-9s %(name)s.%(funcName)s:%(lineno)d > %(message)s"
-    )
-    logging.getLogger("hyo2").setLevel(hyo2_logging)
-    logging.getLogger("hyo2.abc").setLevel(abc_logging)
-
-
-set_logging()
+set_logging(ns_list=["hyo2.abc", ])
 app_info = AppInfo()
 lib_info = LibInfo()
 

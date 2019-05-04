@@ -1,10 +1,11 @@
 import time
 import logging
-
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+from hyo2.abc.lib.logging import set_logging
 
 from hyo2.abc.lib.progress.cli_progress import CliProgress
+
+logger = logging.getLogger(__name__)
+set_logging(ns_list=["hyo2.abc"])
 
 progress = CliProgress()
 

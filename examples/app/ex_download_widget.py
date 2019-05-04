@@ -1,12 +1,12 @@
 import sys
 import logging
 
-from PySide2 import QtCore, QtWidgets, QtWebEngineWidgets
-
-logging.basicConfig(level=logging.DEBUG)
-logger = logging.getLogger(__name__)
-
+from PySide2 import QtWidgets, QtWebEngineWidgets
 from hyo2.abc.app.widgets.browser.download_widget import DownloadWidget
+from hyo2.abc.lib.logging import set_logging
+
+logger = logging.getLogger(__name__)
+set_logging(ns_list=["hyo2.abc"])
 
 
 def download_requested(item):
