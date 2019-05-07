@@ -122,7 +122,7 @@ class NOAASupport:
         ret = str()
         for folder in sorted(os.listdir(Helper(lib_info=self._li).package_folder())):
             # logger.debug("folder: %s" % folder)
-            if "Caris_Support_Files" in folder:
+            if ("Caris_Support_Files" in folder) and (len(folder) > 24):
                 ret = os.path.join(Helper(lib_info=self._li).package_folder(), folder)
 
         return ret
