@@ -114,8 +114,9 @@ class GdalAux:
         except Exception as e:
             logger.warning("skip the new-line replacement: %s" % e)
         err_class = err_type.get(err_class, 'None')
-
-        raise RuntimeError("%s: gdal error %s > %s" % (err_class, err_num, err_msg))
+        if err_class in ["Failure", "Fatal"]:
+            raise RuntimeError("%s: gdal error %s > %s" % (err_class, err_num, err_msg))
+        logger.info("%s: gdal error %s > %s" % (err_class, err_num, err_msg))
 
     @classmethod
     def push_gdal_error_handler(cls) -> None:
