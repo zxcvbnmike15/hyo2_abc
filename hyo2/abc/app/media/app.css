@@ -410,17 +410,18 @@ QTabBar::tab:!selected:hover {
 
 QCheckBox
 {
-    spacing: 5px;
+    spacing: 0.45em;
     outline: none;
     color: #61889b;
-    margin-bottom: 2px;
+    margin-bottom: 0.15em;
 }
 
 QGroupBox
 {
     border:1px solid #d2d8db;
-    border-radius: 2px;
-    margin-top: 0.75em;
+    border-radius: 0.12em;
+    margin-top: 0.9em;
+    font-size: 8pt;
 }
 
 QGroupBox::title
@@ -428,9 +429,9 @@ QGroupBox::title
     color: #76797C;
     subcontrol-origin: margin;
     subcontrol-position: top left;
-    padding-left: 3px;
-    padding-right: 3px;
-    padding-top: 4px;
+    padding-left: 0.25em;
+    padding-right: 0.25em;
+    padding-top: 0.33em;
 }
 
 QCheckBox:disabled
