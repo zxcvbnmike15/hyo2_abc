@@ -48,12 +48,12 @@ setup(
     setup_requires=[
         "setuptools",
         "wheel",
+        "coverage",
         "cython"
     ],
     install_requires=[
         "appdirs",
         "bidict",
-        "coverage",
         "numpy",
         "matplotlib",
         "PySide2",
