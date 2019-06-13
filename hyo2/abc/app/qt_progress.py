@@ -102,6 +102,8 @@ class QtProgress(AbstractProgress):
         if text is not None:
             self._text = text
 
+        # logger.info('added %.4f: %.4f' % (quantum, self._value))
+
         self._display()
 
     def end(self):
