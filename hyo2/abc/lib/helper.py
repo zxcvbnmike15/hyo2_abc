@@ -6,6 +6,8 @@ import platform
 import subprocess
 import sys
 import logging
+from typing import Union
+from pathlib import Path
 
 from appdirs import user_data_dir
 
@@ -23,8 +25,11 @@ class Helper:
         self._li = lib_info
 
     @classmethod
-    def explore_folder(cls, path: str) -> bool:
+    def explore_folder(cls, path: Union[Path, str]) -> bool:
         """Open the passed path using OS-native commands"""
+        if isinstance(path, Path):
+            path = str(path)
+
         if cls.is_url(path):
             import webbrowser
             webbrowser.open(path)
