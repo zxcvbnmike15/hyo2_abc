@@ -51,7 +51,8 @@ class TestABCLibHelper(unittest.TestCase):
 
     def test_is_url(self):
         self.assertTrue(self.h.is_url("https://www.hydroffice.org"))
-        self.assertFalse(self.h.is_url("http://fake/url"))
+        self.assertTrue(self.h.is_url("http://www.hydroffice.org"))
+        self.assertFalse(self.h.is_url("ftp://fake/url"))
 
     def test_python_path(self):
         self.assertTrue(os.path.exists(self.h.python_path()))
