@@ -175,7 +175,7 @@ class Helper:
     def is_url(cls, value) -> bool:
         if len(value) > 7:
 
-            https = "https"
+            https = "http"
             if value[:len(https)] == https:
                 return True
 

@@ -5,14 +5,14 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 import logging
 
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.lib.helper import Helper
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_info import AppInfo
 from hyo2.abc.app.widgets.browser.browser import Browser
 from hyo2.abc.app.dialogs.about.about_dialog import AboutDialog
 from hyo2.abc.app.dialogs.noaa_s57.noaa_s57 import NOAAS57Dialog
+
+logger = logging.getLogger(__name__)
 
 
 class InfoTab(QtWidgets.QMainWindow):
@@ -30,7 +30,8 @@ class InfoTab(QtWidgets.QMainWindow):
                  with_noaa_link: bool = False,
                  with_unh_link: bool = False,
                  with_license: bool = False,
-                 with_noaa_57: bool = False
+                 with_noaa_57: bool = False,
+                 with_ausseabed_link: bool = False
                  ):
         super().__init__(main_win)
         self._li = lib_info
@@ -62,6 +63,7 @@ class InfoTab(QtWidgets.QMainWindow):
 
         icon_size = QtCore.QSize(self._ai.app_toolbars_icon_size, self._ai.app_toolbars_icon_size)
 
+        # noinspection PyArgumentList
         self.toolbar = self.addToolBar('Shortcuts')
         self.toolbar.setIconSize(icon_size)
 
@@ -137,6 +139,15 @@ class InfoTab(QtWidgets.QMainWindow):
             # noinspection PyUnresolvedReferences
             self.unh_action.triggered.connect(self.load_unh_edu)
             self.toolbar.addAction(self.unh_action)
+
+        # http://www.ausseabed.gov.au/
+        self.ausseabed_action = None
+        if with_ausseabed_link:
+            self.ausseabed_action = QtWidgets.QAction(
+                QtGui.QIcon(os.path.join(self.media, 'ausseabed.png')), 'ausseabed.gov.au', self)
+            # noinspection PyUnresolvedReferences
+            self.ausseabed_action.triggered.connect(self.load_ausseabed_gov_au)
+            self.toolbar.addAction(self.ausseabed_action)
 
         self.toolbar.addSeparator()
 
@@ -222,6 +233,11 @@ class InfoTab(QtWidgets.QMainWindow):
     @classmethod
     def load_unh_edu(cls):
         url = 'https://www.unh.edu'
+        Helper.explore_folder(url)
+
+    @classmethod
+    def load_ausseabed_gov_au(cls):
+        url = 'http://www.ausseabed.gov.au/'
         Helper.explore_folder(url)
 
     def show_noaa_support(self):
