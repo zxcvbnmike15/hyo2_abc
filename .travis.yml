@@ -39,7 +39,7 @@ install:
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       conda install numpy matplotlib-base pyproj proj4=5.2.0 gdal;
     else
-      conda install numpy matplotlib-base pyproj proj4=5.2.0 gdal;
+      conda install numpy matplotlib-base pyproj proj4=5.2.0 gdal poppler<0.62;
       export LD_LIBRARY_PATH=$HOME/miniconda/envs/test-environment/lib:$LD_LIBRARY_PATH;
     fi
   - pip install coveralls
