@@ -42,7 +42,10 @@ setup(
         "*.tests", "*.tests.*", "tests.*", "tests", "*.test*",
     ]),
     package_data={
-        "": ["media/*.png", "media/*.ico", "media/*.icns", "media/*.txt",],
+        "": [
+            "media/*.png", "media/*.ico", "media/*.icns", "media/*.txt",
+            "media/*.css",
+        ],
     },
     zip_safe=False,
     setup_requires=[
