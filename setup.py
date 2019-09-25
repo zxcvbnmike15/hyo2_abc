@@ -43,8 +43,8 @@ setup(
     ]),
     package_data={
         "": [
-            "media/*.png", "media/*.ico", "media/*.icns", "media/*.txt",
-            "media/*.css",
+            "media/*.png", "media/**/*.png", "media/*.ico", "media/*.icns",
+            "media/*.txt", "media/*.css"
         ],
     },
     zip_safe=False,
