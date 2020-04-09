@@ -51,8 +51,7 @@ setup(
     setup_requires=[
         "setuptools",
         "wheel",
-        "coverage",
-        "cython"
+        "coverage"
     ],
     install_requires=[
         "appdirs",
