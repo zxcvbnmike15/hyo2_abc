@@ -23,24 +23,20 @@ install:
   - conda config --set always_yes yes --set changeps1 no --set auto_update_conda false --set notify_outdated_conda false
   - conda config --add channels conda-forge
   - conda update -q conda
-  # Useful for debugging any issues with conda
   - conda info -a
-
   - conda create -q -n test-environment python=$PYTHON_VERSION
   - conda activate test-environment
-  - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
-      conda install appdirs bidict cartopy gdal matplotlib-base numpy psutil pyproj pyside2;
-    else
-      conda install appdirs bidict cartopy gdal matplotlib-base numpy psutil pyproj pyside2;
-      export LD_LIBRARY_PATH=$HOME/miniconda/envs/test-environment/lib:$LD_LIBRARY_PATH;
-    fi
-  - pip install coveralls
-  # no-deps because coonda's PySide2 is not detected
-  - pip install --no-deps .
+  - python --version
+
+  - conda install appdirs bidict cartopy gdal matplotlib-base numpy psutil pyproj
+  - pip install coveralls PyYAML PySide2 wheel
+  - pip install .
   - conda list --show-channel-urls
 
 script:
   - coverage run --source hyo2 setup.py test
+  - coverage report -m
+  - coveralls
 
 after_success:
-  - coveralls
+  - python setup.py bdist_wheel
