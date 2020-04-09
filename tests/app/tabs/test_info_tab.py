@@ -13,7 +13,7 @@ from hyo2.abc.app.app_info import AppInfo
 
 class TestAppTabsInfoTab(unittest.TestCase):
 
-    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_show(self):
 
         if not QtWidgets.QApplication.instance():
