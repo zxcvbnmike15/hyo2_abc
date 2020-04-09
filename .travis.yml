@@ -27,7 +27,7 @@ install:
   - conda info -a
 
   - conda create -q -n test-environment python=$PYTHON_VERSION
-  - source activate test-environment
+  - conda activate test-environment
   - if [[ "$TRAVIS_OS_NAME" == "osx" ]]; then
       conda install appdirs bidict cartopy gdal matplotlib numpy psutil pyproj PySide2;
     else
