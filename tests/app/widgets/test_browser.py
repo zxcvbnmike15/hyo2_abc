@@ -14,7 +14,7 @@ class TestAppBrowserBrowser(unittest.TestCase):
     @unittest.skipIf(platform.system() in ['Darwin', 'Linux', 'Windows'], "Temporarily disabled")
     def test_change_url(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         w = Browser()
@@ -28,7 +28,7 @@ class TestAppBrowserBrowser(unittest.TestCase):
     @unittest.skipIf(platform.system() in ['Darwin', 'Linux', 'Windows'], "Temporarily disabled")
     def test_type_url(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         w = Browser()
