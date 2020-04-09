@@ -6,8 +6,8 @@ os:
 
 env:
   - PYTHON_VERSION=3.8
-  - PYTHON_VERSION=3.7
   - PYTHON_VERSION=3.6
+  - PYTHON_VERSION=3.7
 
 matrix:
   fast_finish: true
@@ -35,9 +35,8 @@ install:
       export LD_LIBRARY_PATH=$HOME/miniconda/envs/test-environment/lib:$LD_LIBRARY_PATH;
     fi
   - pip install coveralls
-  - pip install .
-  # - conda remove --force PyQt Qt sip
-  # - rm -f $HOME/miniconda/envs/test-environment/qt.conf
+  # no-deps because coonda's PySide2 is not detected
+  - pip install --no-deps .
   - conda list --show-channel-urls
 
 script:

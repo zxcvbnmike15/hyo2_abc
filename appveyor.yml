@@ -49,7 +49,8 @@ install:
 build: off
 build_script:
   - conda list --show-channel-urls
-  - pip install .
+  # no-deps because coonda's PySide2 is not detected
+  - pip install --no-deps .
 
 test: off
 test_script:
