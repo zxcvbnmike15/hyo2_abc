@@ -37,7 +37,7 @@ script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
        export QT_QPA_PLATFORM=offscreen;
     fi
-  - py.test --cov
+  - coverage run --source hyo2 setup.py test
   - coverage report -m
   - coveralls
 
