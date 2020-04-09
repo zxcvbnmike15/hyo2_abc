@@ -57,12 +57,14 @@ setup(
     install_requires=[
         "appdirs",
         "bidict",
-        "numpy",
-        "matplotlib",
-        "PySide2",
+        "cartopy[plotting]",
         "gdal",
+        "matplotlib",
+        "numpy",
+        "psutil",
         "pyproj",
-        "psutil"
+        "PySide2",
+        "pywin32 ; platform_system=='Windows'"
     ],
     python_requires='>=3.5',
     entry_points={
@@ -77,7 +79,7 @@ setup(
     long_description=read(os.path.join(here, "README.rst")),
     url="https://www.hydroffice.org",
     classifiers=[  # https://pypi.python.org/pypi?%3Aaction=list_classifiers
-        "Development Status :: 4 - Beta",
+        "Development Status :: 5 - Production/Stable",
         "Intended Audience :: Science/Research",
         "Natural Language :: English",
         "License :: OSI Approved :: GNU Lesser General Public License v3 (LGPLv3)",
@@ -86,6 +88,8 @@ setup(
         "Programming Language :: Python :: 3",
         "Programming Language :: Python :: 3.5",
         "Programming Language :: Python :: 3.6",
+        "Programming Language :: Python :: 3.7",
+        "Programming Language :: Python :: 3.8",
         "Topic :: Scientific/Engineering :: GIS",
     ],
     keywords="hydrography ocean mapping",

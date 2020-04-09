@@ -198,7 +198,7 @@ class Helper:
     @classmethod
     def is_windows(cls) -> bool:
         """ Check if the current OS is Windows """
-        return (sys.platform == 'win32') or (os.name is "nt")
+        return (sys.platform == 'win32') or (os.name == "nt")
 
     @classmethod
     def python_path(cls):
@@ -259,9 +259,9 @@ class Helper:
 
         return path
 
-    def package_info(self, qt_html: bool=False) -> str:
+    def package_info(self, qt_html: bool = False) -> str:
 
-        def style_row(raw_row: str, is_h1: bool=False, is_h2: bool=False) -> str:
+        def style_row(raw_row: str, is_h1: bool = False, is_h2: bool = False) -> str:
             if qt_html:
                 if is_h1:
                     return "<h1>%s</h1>" % raw_row
@@ -315,7 +315,7 @@ class Helper:
 
         msg += style_row("Dependencies", is_h2=True)
         for key in self._li.lib_dep_dict.keys():
-            msg += style_row("%s: %s" % (key, package_version(self._li.lib_dep_dict[key]), ))
+            msg += style_row("%s: %s" % (key, package_version(self._li.lib_dep_dict[key]),))
 
         return msg
 
@@ -331,7 +331,7 @@ class Helper:
 
     def web_url(self, suffix=None):
 
-        url = '%s%s' % (self._li.lib_url, self._li.lib_version.replace('.', '_'), )
+        url = '%s%s' % (self._li.lib_url, self._li.lib_version.replace('.', '_'),)
         if self.is_pydro():
             url += "_pydro"
 
