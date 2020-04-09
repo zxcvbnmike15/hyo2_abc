@@ -41,7 +41,7 @@ install:
 
 build: off
 build_script:
-  - pip install .
+  - pip install -e .
   - conda list --show-channel-urls
 
 test: off

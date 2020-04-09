@@ -30,14 +30,14 @@ install:
 
   - conda install appdirs bidict cartopy gdal matplotlib-base numpy psutil pyproj
   - pip install coveralls PyYAML PySide2 wheel
-  - pip install .
+  - pip install -e .
   - conda list --show-channel-urls
 
 script:
   - if [[ "$TRAVIS_OS_NAME" == "linux" ]]; then
        export QT_QPA_PLATFORM=offscreen;
     fi
-  - coverage run --source hyo2 setup.py test
+  - py.test --cov
   - coverage report -m
   - coveralls
 
