@@ -1,9 +1,7 @@
 import platform
 import unittest
 
-from PySide2.QtWidgets import (
-    QApplication, qApp
-)
+from PySide2 import QtWidgets
 
 # import logging
 # logging.basicConfig(level=logging.DEBUG)
@@ -15,11 +13,11 @@ from hyo2.abc.app.app_info import AppInfo
 
 class TestAppExceptionDialog(unittest.TestCase):
 
-    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
-        if not qApp:
-            QApplication([])
+        if not QtWidgets.QApplication.instance():
+            QtWidgets.QApplication([])
 
         d = ExceptionDialog(lib_info=LibInfo(), app_info=AppInfo())
         d.show()

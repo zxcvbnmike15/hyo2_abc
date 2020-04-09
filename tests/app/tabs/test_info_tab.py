@@ -16,7 +16,7 @@ class TestAppTabsInfoTab(unittest.TestCase):
     @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_show(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         mw = QtWidgets.QMainWindow()

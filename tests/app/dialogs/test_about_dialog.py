@@ -17,10 +17,10 @@ from hyo2.abc.app.app_info import AppInfo
 
 class TestAppAboutDialog(unittest.TestCase):
 
-    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         d = AboutDialog(lib_info=LibInfo(), app_info=AppInfo())
@@ -28,10 +28,10 @@ class TestAppAboutDialog(unittest.TestCase):
         d.switch_visible()
         d.switch_visible()
 
-    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_with_all_tabs(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         d = AboutDialog(lib_info=LibInfo(), app_info=AppInfo(),
@@ -41,10 +41,10 @@ class TestAppAboutDialog(unittest.TestCase):
 
 class TestAppAboutDialogGeneralInfoTab(unittest.TestCase):
 
-    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         t = GeneralInfoTab(lib_info=LibInfo())
@@ -53,10 +53,10 @@ class TestAppAboutDialogGeneralInfoTab(unittest.TestCase):
 
 class TestAppAboutDialogLicenseTab(unittest.TestCase):
 
-    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         t = LicenseTab(app_info=AppInfo())
@@ -65,10 +65,10 @@ class TestAppAboutDialogLicenseTab(unittest.TestCase):
 
 class TestAppAboutDialogLocalEnvironmentTab(unittest.TestCase):
 
-    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         t = LocalEnvironmentTab()
@@ -77,10 +77,10 @@ class TestAppAboutDialogLocalEnvironmentTab(unittest.TestCase):
 
 class TestAppAboutDialogGdalInfoTab(unittest.TestCase):
 
-    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_visibility(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         t = GdalInfoTab()

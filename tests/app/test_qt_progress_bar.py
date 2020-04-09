@@ -8,10 +8,10 @@ from hyo2.abc.app.qt_progress import QtProgress
 
 class TestABCAppQtProgress(unittest.TestCase):
 
-    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_run(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         widget = QtWidgets.QWidget()

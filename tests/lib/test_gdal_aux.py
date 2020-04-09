@@ -1,10 +1,29 @@
-import os
 import unittest
 
 from hyo2.abc.lib.gdal_aux import GdalAux
+from hyo2.abc.lib.testing_paths import TestingPaths
+from osgeo import ogr
 
 
 class TestABCLibHelper(unittest.TestCase):
+
+    def setUp(self):
+        self.tp = TestingPaths()
+
+    def test_gdal_version(self):
+        GdalAux.current_gdal_version()
+
+    def test_create_ogr_data_source(self):
+        for ogr_format in GdalAux.ogr_formats.keys():
+            output_file = self.tp.output_data_folder().joinpath("ex_gdal_aux%s" % GdalAux.ogr_exts[ogr_format])
+            if output_file.exists():
+                output_file.unlink()
+
+            output_ds = GdalAux.create_ogr_data_source(ogr_format=GdalAux.ogr_formats[ogr_format],
+                                                       output_path=str(output_file))
+            lyr = output_ds.CreateLayer("test", None, ogr.wkbPoint)
+            self.assertIsNotNone(lyr)
+            output_ds = None
 
     def test_gdal_data(self):
         GdalAux.check_gdal_data()

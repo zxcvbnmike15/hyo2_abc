@@ -12,14 +12,13 @@ environment:
       PYTHON_ARCH: x64
       MINICONDA: C:\Miniconda36-x64
 
-    - PYTHON_VERSION: 3.7
-      PYTHON_ARCH: x64
-      MINICONDA: C:\Miniconda36-x64
-
     - PYTHON_VERSION: 3.6
       PYTHON_ARCH: x64
       MINICONDA: C:\Miniconda36-x64
 
+    - PYTHON_VERSION: 3.7
+      PYTHON_ARCH: x64
+      MINICONDA: C:\Miniconda36-x64
 
 matrix:
 
@@ -39,18 +38,15 @@ install:
   - conda config --add channels conda-forge
   - conda create -q -n test-environment python=%PYTHON_VERSION%
   - activate test-environment
-  - pip install wheel
-
-  # Check that we have the expected version of Python
   - python --version
 
-  - pip install coveralls PyYAML
-  - conda install appdirs bidict cartopy gdal matplotlib numpy psutil pyproj PySide2
+  - conda install appdirs bidict cartopy gdal matplotlib-base numpy psutil pyproj
+  - pip install coveralls PyYAML PySide2 wheel
 
 build: off
 build_script:
-  - conda list --show-channel-urls
   - pip install .
+  - conda list --show-channel-urls
 
 test: off
 test_script:

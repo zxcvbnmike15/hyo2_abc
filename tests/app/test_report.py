@@ -15,10 +15,10 @@ class TestABCLibReport(unittest.TestCase):
     def setUpClass(cls) -> None:
         cls.testing = TestingPaths(root_folder=Path(__file__).parent.parent.parent.resolve())
 
-    @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
+    # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_init(self):
 
-        if not QtWidgets.qApp:
+        if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
         li = LibInfo()
