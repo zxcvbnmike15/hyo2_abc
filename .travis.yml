@@ -29,7 +29,7 @@ install:
   - python --version
 
   - conda install appdirs bidict cartopy gdal matplotlib-base numpy psutil pyproj
-  - pip install coveralls PyYAML PySide2 wheel
+  - pip install coveralls PyYAML PySide2 pytest pytest-cov wheel
   - pip install -e .
   - conda list --show-channel-urls
 
