@@ -32,7 +32,7 @@ class GdalAux:
     }
 
     @classmethod
-    def current_gdal_version(cls):
+    def current_gdal_version(cls) -> int:
         return int(gdal.VersionInfo('VERSION_NUM'))
 
     @classmethod
@@ -51,7 +51,7 @@ class GdalAux:
         return drv
 
     @classmethod
-    def create_ogr_data_source(cls, ogr_format, output_path, epsg=4326):
+    def create_ogr_data_source(cls, ogr_format: str, output_path: str, epsg: Optional[int] = 4326):
         drv = cls.get_ogr_driver(ogr_format)
         output_file = output_path + cls.ogr_exts[drv.GetName()]
         # logger.debug("output: %s" % output_file)
@@ -68,7 +68,7 @@ class GdalAux:
         return ds
 
     @classmethod
-    def create_prj_file(cls, output_path, epsg=4326):
+    def create_prj_file(cls, output_path: str, epsg: Optional[int] = 4326) -> None:
         """Create an ESRI lib file (geographic WGS84 by default)"""
         spatial_ref = osr.SpatialReference()
         spatial_ref.ImportFromEPSG(epsg)
@@ -215,6 +215,7 @@ class GdalAux:
             return
 
         if hasattr(pyproj, 'pyproj_datadir'):
+            # noinspection PyTypeChecker
             if os.path.exists(os.path.join(pyproj.pyproj_datadir, "epsg")):
                 return
 
@@ -270,27 +271,20 @@ class GdalAux:
             cls.proj4_data_fixed = True
             return
 
-        try:
-            import conda
-
-            conda_file_dir = conda.__file__
-            conda_dir = conda_file_dir.split('lib')[0]
-            proj4_data_path5 = os.path.join(os.path.join(conda_dir, 'share'), 'proj')
-            epsg_path5 = os.path.join(proj4_data_path5, 'epsg')
-            if os.path.exists(epsg_path5):
-
-                os.environ['PROJ_LIB'] = proj4_data_path5
-                if hasattr(pyproj, 'pyproj_datadir'):
-                    pyproj.pyproj_datadir = proj4_data_path5
-                logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
-                cls.proj4_data_fixed = True
-                return
-
-        except Exception as e:
-            logger.warning("%s" % e)
-
         # anaconda specific (Linux)
-        proj4_data_path6 = os.path.join(Helper.python_path(), 'share', 'proj')
+        proj4_data_path5 = os.path.join(Helper.python_path(), 'share', 'proj')
+        proj_db_path5 = os.path.join(proj4_data_path5, 'proj.db')
+        if os.path.exists(proj_db_path5):
+
+            os.environ['PROJ_LIB'] = proj4_data_path5
+            if hasattr(pyproj, 'pyproj_datadir'):
+                pyproj.pyproj_datadir = proj4_data_path5
+            logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+            cls.proj4_data_fixed = True
+            return
+
+        # anaconda specific (Win)
+        proj4_data_path6 = os.path.join(Helper.python_path(), 'Library', 'share', 'proj')
         proj_db_path6 = os.path.join(proj4_data_path6, 'proj.db')
         if os.path.exists(proj_db_path6):
 
@@ -301,22 +295,31 @@ class GdalAux:
             cls.proj4_data_fixed = True
             return
 
-        # anaconda specific (Win)
-        proj4_data_path7 = os.path.join(Helper.python_path(), 'Library', 'share', 'proj')
-        proj_db_path7 = os.path.join(proj4_data_path7, 'proj.db')
-        if os.path.exists(proj_db_path7):
+        try:
+            # noinspection PyUnresolvedReferences
+            import conda
 
-            os.environ['PROJ_LIB'] = proj4_data_path7
-            if hasattr(pyproj, 'pyproj_datadir'):
-                pyproj.pyproj_datadir = proj4_data_path7
-            logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
-            cls.proj4_data_fixed = True
-            return
+            conda_file_dir = conda.__file__
+            conda_dir = conda_file_dir.split('lib')[0]
+            proj4_data_path999 = os.path.join(os.path.join(conda_dir, 'share'), 'proj')
+            epsg_path999 = os.path.join(proj4_data_path999, 'epsg')
+            if os.path.exists(epsg_path999):
+
+                os.environ['PROJ_LIB'] = proj4_data_path999
+                if hasattr(pyproj, 'pyproj_datadir'):
+                    pyproj.pyproj_datadir = proj4_data_path999
+                logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+                cls.proj4_data_fixed = True
+                return
+
+        except Exception as e:
+            logger.warning("%s" % e)
 
         # TODO: add more cases to find PROJ_LIB
 
-        raise RuntimeError("Unable to locate PROJ4 data at:\n- %s\n- %s\n- %s\n- %s\n- Conda/share/proj"
-                           % (proj4_data_path1, proj4_data_path2, proj4_data_path3, proj4_data_path4))
+        raise RuntimeError("Unable to locate PROJ4 data at:\n- %s\n- %s\n- %s\n- %s\n- %s\n- %s\n- Conda/share/proj"
+                           % (proj4_data_path1, proj4_data_path2, proj4_data_path3, proj4_data_path4, proj4_data_path5,
+                              proj4_data_path6))
 
     @classmethod
     def crs_id(cls, wkt: str) -> Optional[int]:

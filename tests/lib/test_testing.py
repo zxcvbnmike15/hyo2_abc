@@ -18,6 +18,7 @@ class TestABCLibTesting(unittest.TestCase):
     def test_input_data(self):
         self.assertTrue(os.path.exists(self.t.input_data_folder()))
         self.assertGreater(len(self.t.input_test_files(ext="")), 0)
+        self.assertGreater(len(self.t.input_data_sub_folders()), 0)
 
     def test_download_data(self):
         self.assertTrue(os.path.exists(self.t.download_data_folder()))
