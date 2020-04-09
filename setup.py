@@ -63,7 +63,8 @@ setup(
         "numpy",
         "psutil",
         "pyproj",
-        "PySide2"
+        "PySide2",
+        "pywin32 ; platform_system=='Windows'"
     ],
     python_requires='>=3.5',
     entry_points={
