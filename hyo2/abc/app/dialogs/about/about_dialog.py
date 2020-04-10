@@ -2,8 +2,6 @@ from PySide2 import QtCore, QtGui, QtWidgets
 
 import logging
 
-logger = logging.getLogger(__name__)
-
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_info import AppInfo
 from hyo2.abc.app.dialogs.about.tabs.general_info import GeneralInfoTab
@@ -11,12 +9,14 @@ from hyo2.abc.app.dialogs.about.tabs.license import LicenseTab
 from hyo2.abc.app.dialogs.about.tabs.local_environment import LocalEnvironmentTab
 from hyo2.abc.app.dialogs.about.tabs.gdal_info import GdalInfoTab
 
+logger = logging.getLogger(__name__)
+
 
 class AboutDialog(QtWidgets.QDialog):
 
     def __init__(self, lib_info: LibInfo, app_info: AppInfo,
-                 with_locale_tab: bool=False, with_gdal_tab: bool=False,
-                 parent: QtWidgets.QWidget=None):
+                 with_locale_tab: bool = False, with_gdal_tab: bool = False,
+                 parent: QtWidgets.QWidget = None):
         super().__init__(parent)
         self._li = lib_info
         self._ai = app_info
@@ -27,7 +27,7 @@ class AboutDialog(QtWidgets.QDialog):
         self.setObjectName("AboutDialog")
         self.setWindowTitle("About")
         self.setMinimumSize(400, 200)
-        self.resize(600, 350)
+        self.resize(620, 350)
 
         top_layout = QtWidgets.QHBoxLayout()
         self.setLayout(top_layout)
@@ -35,7 +35,7 @@ class AboutDialog(QtWidgets.QDialog):
         # left layout
 
         left_widget = QtWidgets.QWidget()
-        left_widget.setMaximumWidth(160)
+        left_widget.setMaximumWidth(180)
         top_layout.addWidget(left_widget)
         left_layout = QtWidgets.QVBoxLayout()
         left_widget.setLayout(left_layout)
@@ -44,8 +44,8 @@ class AboutDialog(QtWidgets.QDialog):
         left_layout.addLayout(logo_layout)
         logo_layout.addStretch()
         self.logo = QtWidgets.QLabel()
-        self.logo.setPixmap(QtGui.QPixmap(self._ai.app_icon_path).scaled(80, 80, QtCore.Qt.KeepAspectRatio))
-        self.logo.resize(80, 80)
+        self.logo.setPixmap(QtGui.QPixmap(self._ai.app_icon_path).scaled(90, 90, QtCore.Qt.KeepAspectRatio))
+        self.logo.resize(90, 90)
         # self.logo.setScaledContents(False)
         logo_layout.addWidget(self.logo)
         logo_layout.addStretch()
@@ -53,6 +53,7 @@ class AboutDialog(QtWidgets.QDialog):
         self.name.setObjectName("AboutName")
         self.name.resize(100, 100)
         self.name.setAlignment(QtCore.Qt.AlignCenter)
+        self.name.setWordWrap(True)
         left_layout.addWidget(self.name)
         left_layout.addStretch()
 
