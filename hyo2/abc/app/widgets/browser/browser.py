@@ -11,6 +11,13 @@ from hyo2.abc.lib.helper import Helper
 logger = logging.getLogger(__name__)
 
 
+class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
+
+    def javaScriptConsoleMessage(self, level, message, lineNumber, sourceID):
+        if "slideshare" not in sourceID:
+            logger.debug("QWebEngine: %s[#%d] -> %s" % (sourceID, lineNumber, message))
+
+
 class Browser(QtWidgets.QMainWindow):
 
     def __init__(self, parent: Optional[QtWidgets.QWidget] = None, url: str = "https://www.hydroffice.org") -> None:
@@ -41,8 +48,10 @@ class Browser(QtWidgets.QMainWindow):
         # self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.SpatialNavigationEnabled, True)
         self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.JavascriptEnabled, True)
         self.view.settings().setAttribute(QtWebEngineWidgets.QWebEngineSettings.JavascriptCanOpenWindows, True)
-        # self.view.settings().setAttribute(
-        #     QtWebEngineWidgets.QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
+        self.view.settings().setAttribute(
+            QtWebEngineWidgets.QWebEngineSettings.WebAttribute.LocalContentCanAccessRemoteUrls, True)
+        self.view.settings().setAttribute(
+            QtWebEngineWidgets.QWebEngineSettings.WebAttribute.LocalContentCanAccessFileUrls, True)
         # self.interceptor = RequestInterceptor()
         self.profile = QtWebEngineWidgets.QWebEngineProfile()
         # self.profile.setRequestInterceptor(self.interceptor)
@@ -51,7 +60,7 @@ class Browser(QtWidgets.QMainWindow):
         self.profile.setPersistentCookiesPolicy(QtWebEngineWidgets.QWebEngineProfile.NoPersistentCookies)
         self.profile.setHttpCacheType(QtWebEngineWidgets.QWebEngineProfile.NoCache)
         self.profile.setPersistentStoragePath(self._web_engine_folder())
-        self.page = QtWebEngineWidgets.QWebEnginePage(self.profile, self.view)
+        self.page = WebEnginePage(self.profile, self.view)
         self.view.setPage(self.page)
 
         # noinspection PyUnresolvedReferences
