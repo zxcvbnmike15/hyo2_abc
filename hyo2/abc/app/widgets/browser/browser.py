@@ -14,7 +14,7 @@ logger = logging.getLogger(__name__)
 class WebEnginePage(QtWebEngineWidgets.QWebEnginePage):
 
     def javaScriptConsoleMessage(self, level, message, lineNumber, sourceID):
-        if "slideshare" not in sourceID:
+        if ("slideshare" not in sourceID) and ("hydroffice.org" not in sourceID):
             logger.debug("QWebEngine: %s[#%d] -> %s" % (sourceID, lineNumber, message))
 
 
