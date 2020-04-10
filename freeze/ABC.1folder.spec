@@ -15,11 +15,13 @@
 #   . copy in PySide2 both "resources" and "translations" folder
 #
 
-from PyInstaller.building.build_main import Analysis, PYZ, EXE, COLLECT, BUNDLE, TOC
+from PyInstaller.building.build_main import Analysis, PYZ, EXE, COLLECT, TOC
 from PyInstaller.compat import is_darwin
 
 import os
 import sys
+
+# noinspection PyTypeChecker
 sys.modules['FixTk'] = None
 
 from hyo2.abc import __version__ as abc_version
@@ -53,13 +55,13 @@ def collect_pkg_data(package, include_py_files=False, subdir=None):
 abc_data = collect_pkg_data('hyo2.abc')
 pyside2_data = collect_pkg_data('PySide2')
 
-icon_file = os.path.join('freeze', 'ABC.ico')
+icon_file = os.path.normpath(os.path.join(os.curdir, 'ABC.ico'))
 if is_darwin:
-    icon_file = os.path.join('freeze', 'ABC.icns')
+    icon_file = os.path.normpath(os.path.join(os.curdir, 'ABC.icns'))
 
 a = Analysis(['ABC.py'],
              pathex=[],
-             hiddenimports=["PIL", "scipy._lib.messagestream"],
+             hiddenimports=["PIL", "scipy._lib.messagestream", "pyproj.datadir"],
              excludes=["IPython", "PyQt5", "pandas", "sphinx", "sphinx_rtd_theme", "OpenGL_accelerate",
                        "FixTk", "tcl", "tk", "_tkinter", "tkinter", "Tkinter",
                        "wx"],
