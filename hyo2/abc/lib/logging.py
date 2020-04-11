@@ -1,6 +1,8 @@
 import logging
 from typing import Optional
 
+# logger = logging.getLogger(__name__)
+
 
 def set_logging(ns_list: Optional[list] = None,
                 default_logging: int = logging.WARNING,
@@ -20,5 +22,5 @@ def set_logging(ns_list: Optional[list] = None,
         ns_list.append(main_ns)
 
     for ns in ns_list:
-        # print(ns)
+        # logger.info(ns)
         logging.getLogger(ns).setLevel(lib_logging)
