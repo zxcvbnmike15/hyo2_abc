@@ -22,4 +22,3 @@ d.setWindowIcon(QtGui.QIcon(os.path.join(AppInfo().app_media_path, "noaa_support
 d.show()
 
 sys.exit(app.exec_())
-
