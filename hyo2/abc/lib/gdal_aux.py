@@ -216,7 +216,9 @@ class GdalAux:
 
         if hasattr(pyproj, 'pyproj_datadir'):
             # noinspection PyTypeChecker
-            if os.path.exists(os.path.join(pyproj.pyproj_datadir, "epsg")):
+            proj_path = os.path.join(pyproj.pyproj_datadir, "epsg")
+            if os.path.exists(proj_path):
+                logger.debug("PROJ_LIB = %s" % proj_path)
                 return
 
         if 'PROJ_LIB' in os.environ:
