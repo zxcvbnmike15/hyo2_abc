@@ -297,7 +297,17 @@ class Helper:
                 try:
                     return importlib.import_module("%s" % package).VERSION
                 except (ImportError, AttributeError):
-                    return "N/A"
+
+                    def import_class(cl):
+                        d = cl.rfind(".")
+                        classname = cl[d + 1:len(cl)]
+                        m = __import__(cl[0:d], globals(), locals(), [classname])
+                        return getattr(m, classname)
+
+                    try:
+                        return import_class("%s" % package).version()
+                    except (ImportError, AttributeError):
+                        return "N/A"
 
         msg = str()
 
