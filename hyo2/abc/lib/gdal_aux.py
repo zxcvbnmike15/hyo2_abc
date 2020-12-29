@@ -218,7 +218,7 @@ class GdalAux:
             # noinspection PyTypeChecker
             proj_path = os.path.join(pyproj.pyproj_datadir, "epsg")
             if os.path.exists(proj_path):
-                logger.debug("PROJ_LIB = %s" % proj_path)
+                # logger.debug("PROJ_LIB = %s" % proj_path)
                 return
 
         if 'PROJ_LIB' in os.environ:
@@ -233,7 +233,7 @@ class GdalAux:
             os.environ['PROJ_LIB'] = proj4_data_path1
             if hasattr(pyproj, 'pyproj_datadir'):
                 pyproj.pyproj_datadir = proj4_data_path1
-            logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+            # logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
 
@@ -245,7 +245,7 @@ class GdalAux:
             os.environ['PROJ_LIB'] = proj4_data_path2
             if hasattr(pyproj, 'pyproj_datadir'):
                 pyproj.pyproj_datadir = proj4_data_path2
-            logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+            # logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
 
@@ -257,7 +257,7 @@ class GdalAux:
             os.environ['PROJ_LIB'] = proj4_data_path3
             if hasattr(pyproj, 'pyproj_datadir'):
                 pyproj.pyproj_datadir = proj4_data_path3
-            logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+            # logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
 
@@ -269,7 +269,7 @@ class GdalAux:
             os.environ['PROJ_LIB'] = proj4_data_path4
             if hasattr(pyproj, 'pyproj_datadir'):
                 pyproj.pyproj_datadir = proj4_data_path4
-            logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+            # logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
 
@@ -281,7 +281,7 @@ class GdalAux:
             os.environ['PROJ_LIB'] = proj4_data_path5
             if hasattr(pyproj, 'pyproj_datadir'):
                 pyproj.pyproj_datadir = proj4_data_path5
-            logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+            # logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
 
@@ -293,7 +293,7 @@ class GdalAux:
             os.environ['PROJ_LIB'] = proj4_data_path6
             if hasattr(pyproj, 'pyproj_datadir'):
                 pyproj.pyproj_datadir = proj4_data_path6
-            logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+            # logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
             cls.proj4_data_fixed = True
             return
 
@@ -310,7 +310,7 @@ class GdalAux:
                 os.environ['PROJ_LIB'] = proj4_data_path999
                 if hasattr(pyproj, 'pyproj_datadir'):
                     pyproj.pyproj_datadir = proj4_data_path999
-                logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
+                # logger.debug("PROJ_LIB = %s" % os.environ['PROJ_LIB'])
                 cls.proj4_data_fixed = True
                 return
 
