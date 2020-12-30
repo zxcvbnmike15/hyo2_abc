@@ -10,8 +10,8 @@ HydrOffice ABC
     :target: https://www.hydroffice.org/manuals/abc/index.html
     :alt: Latest Documentation
 
-.. image:: https://travis-ci.org/hydroffice/hyo2_abc.svg?branch=master
-    :target: https://travis-ci.org/hydroffice/hyo2_abc
+.. image:: https://travis-ci.com/hydroffice/hyo2_abc.svg?branch=master
+    :target: https://travis-ci.com/hydroffice/hyo2_abc
     :alt: travis-ci
 
 .. image:: https://ci.appveyor.com/api/projects/status/pf937dxph2600m6l?svg=true
