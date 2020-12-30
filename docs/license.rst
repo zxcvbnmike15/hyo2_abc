@@ -1,19 +1,6 @@
 License
 =======
 
-Copyright Notice and License Terms for: hyo.abc - The ABC package for HydrOffice
-Copyright (c) 2018, University of New Hampshire, Center for Coastal and Ocean Mapping
-All rights reserved.  Portions of this project were developed under a cooperative agreement
-with NOAA Coast Survey Development Laboratory, and contain NOAA-developed code in the public domain.
-
-Released under a dual license:
-- Community license (under LGPL v3)
-- Industrial Associate license
-
-For more info, visit: http://www.hydroffice.org/license/
-
------------------------------------------------------------------------------
-
 **GNU LESSER GENERAL PUBLIC LICENSE**
 
 *Version 3, 29 June 2007*

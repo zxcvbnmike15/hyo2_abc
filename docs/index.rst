@@ -28,5 +28,5 @@ The ABC package
 
 
 .. note::
-    © University of New Hampshire, Center for Coastal and Ocean Mapping, 2018. All rights reserved.
+    © University of New Hampshire, Center for Coastal and Ocean Mapping, 2021. All rights reserved.
 

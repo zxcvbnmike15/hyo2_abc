@@ -41,16 +41,16 @@ master_doc = 'index'
 
 # General information about the project.
 project = u'ABC'
-copyright = u'2018, CCOM/JHC,UNH'
+copyright = u'2021, CCOM/JHC,UNH'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
 # built documents.
 #
 # The short X.Y version.
-version = '0.1'
+version = '0.2'
 # The full version, including alpha/beta/rc tags.
-release = '0.1.0'
+release = '0.2.5'
 
 numfig = True
 
@@ -194,7 +194,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
   ('index', 'HydrOfficeABC.tex', u'ABC',
-   u'2018, CCOM/JHC,UNH', 'manual'),
+   u'CCOM/JHC,UNH', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
