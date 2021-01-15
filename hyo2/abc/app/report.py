@@ -1,6 +1,7 @@
 import os
 import datetime
 import logging
+import string
 
 from hyo2.abc.lib.helper import Helper
 from hyo2.abc.app.app_info import AppInfo
@@ -76,11 +77,13 @@ class Report:
         if small:
             big_font = QtGui.QFont("Arial", 9)
             normal_font = QtGui.QFont("Arial", 6)
+            section_font = QtGui.QFont("Arial", 7, QtGui.QFont.Bold)
             bold_font = QtGui.QFont("Arial", 6, QtGui.QFont.Bold)
             small_font = QtGui.QFont("Arial", 5)
         else:
             big_font = QtGui.QFont("Arial", 10)
             normal_font = QtGui.QFont("Arial", 8)
+            section_font = QtGui.QFont("Arial", 9, QtGui.QFont.Bold)
             bold_font = QtGui.QFont("Arial", 8, QtGui.QFont.Bold)
             small_font = QtGui.QFont("Arial", 7)
         lc_flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter | QtCore.Qt.TextWordWrap
@@ -112,7 +115,9 @@ class Report:
         #
 
         page_nr = 1  # a counter for pages
-        section_nr = 1
+        section_nr = 0
+        first_section = True
+        subsection_nr = 1
         row_counter = 1
         if small:
             row_height = 330
@@ -178,6 +183,8 @@ class Report:
                                 doc_width - 2*doc_margin - 2*hor_pad, row_height)
         # painter.drawRect(row_area)
 
+        alphabet = list(string.ascii_uppercase)
+
         first_page = True
         for content_item in self.records:
 
@@ -238,6 +245,40 @@ class Report:
                 if use_colors:
                     painter.setPen(black_pen)
 
+            elif last_item == "[SECTION]":  # the string is a section separator
+                if first_section:
+                    first_section = False
+                else:
+                    section_nr += 1
+                # leave two empty rows
+                row_area.moveTo(row_area.x(), row_area.y() + 2*row_height)
+                row_counter += 1
+                # write a numbered sections
+                painter.setFont(section_font)
+                painter.drawText(row_area, lc_flags,
+                                 "%s. %s" % (alphabet[section_nr], content_item.rsplit(' ', 1)[0]))
+                painter.setFont(normal_font)
+                subsection_nr = 1
+
+            elif last_item == "[SKIP_SEC]":  # the string is a section separator
+                if use_colors:
+                    painter.setPen(gray_pen)
+                if first_section:
+                    first_section = False
+                else:
+                    section_nr += 1
+                # leave two empty rows
+                row_area.moveTo(row_area.x(), row_area.y() + 2*row_height)
+                row_counter += 1
+                # write a numbered sections
+                painter.setFont(section_font)
+                painter.drawText(row_area, lc_flags,
+                                 "%s. %s" % (alphabet[section_nr], content_item.rsplit(' ', 1)[0]))
+                painter.setFont(normal_font)
+                subsection_nr = 1
+                if use_colors:
+                    painter.setPen(black_pen)
+
             elif last_item == "[CHECK]" or last_item == "[TOTAL]":  # the string is a section separator
                 # leave an empty row
                 row_area.moveTo(row_area.x(), row_area.y() + row_height)
@@ -245,9 +286,9 @@ class Report:
                 # write a numbered sections
                 painter.setFont(bold_font)
                 painter.drawText(row_area, lc_flags,
-                                 "%s. %s" % (section_nr, content_item.rsplit(' ', 1)[0]))  # cut the final token
+                                 "%s.%s. %s" % (alphabet[section_nr], subsection_nr, content_item.rsplit(' ', 1)[0]))
                 painter.setFont(normal_font)
-                section_nr += 1
+                subsection_nr += 1
 
             elif last_item == "[SKIP_CHK]":  # the string is a section separator
                 if use_colors:
@@ -258,9 +299,9 @@ class Report:
                 # write a numbered sections
                 painter.setFont(bold_font)
                 painter.drawText(row_area, lc_flags,
-                                 "%s. %s" % (section_nr, content_item.rsplit(' ', 1)[0]))  # cut the final token
+                                 "%s.%s. %s" % (alphabet[section_nr], subsection_nr, content_item.rsplit(' ', 1)[0]))
                 painter.setFont(normal_font)
-                section_nr += 1
+                subsection_nr += 1
                 if use_colors:
                     painter.setPen(black_pen)
 
