@@ -71,6 +71,7 @@ class Report:
         # prepare some drawing tools
         blue_pen = QtGui.QPen(QtGui.QColor(30, 30, 255))
         red_pen = QtGui.QPen(QtGui.QColor(255, 30, 30))
+        orange_pen = QtGui.QPen(QtGui.QColor(255, 165, 30))
         green_pen = QtGui.QPen(QtGui.QColor(30, 200, 30))
         gray_pen = QtGui.QPen(QtGui.QColor(120, 120, 120))
         black_pen = QtGui.QPen(QtGui.QColor(30, 30, 30))
@@ -226,6 +227,7 @@ class Report:
             # painter.drawRect(row_area)
 
             last_item = content_item.split(' ')[-1]
+            first_item = content_item.split(' ')[0]
             if last_item.isdigit():
 
                 if int(last_item) > 0:  # troubles -> red pen
@@ -313,7 +315,22 @@ class Report:
                     painter.setPen(black_pen)
 
             else:
-                painter.drawText(row_area, lc_flags, content_item)
+                if first_item == "[WARNING]":
+                    if use_colors:
+                        painter.setPen(orange_pen)
+                    painter.drawText(row_area, lc_flags, content_item)
+                    if use_colors:
+                        painter.setPen(black_pen)
+
+                elif first_item == "[ERROR]":
+                    if use_colors:
+                        painter.setPen(red_pen)
+                    painter.drawText(row_area, lc_flags, content_item)
+                    if use_colors:
+                        painter.setPen(black_pen)
+
+                else:
+                    painter.drawText(row_area, lc_flags, content_item)
 
             row_counter += 1
             # print("page %s, row %s" % (page_nr, row_counter))
