@@ -254,7 +254,7 @@ class Report:
                     section_nr += 1
                 # leave two empty rows
                 row_area.moveTo(row_area.x(), row_area.y() + 2*row_height)
-                row_counter += 1
+                row_counter += 2
                 # write a numbered sections
                 painter.setFont(section_font)
                 painter.drawText(row_area, lc_flags,
@@ -271,7 +271,7 @@ class Report:
                     section_nr += 1
                 # leave two empty rows
                 row_area.moveTo(row_area.x(), row_area.y() + 2*row_height)
-                row_counter += 1
+                row_counter += 2
                 # write a numbered sections
                 painter.setFont(section_font)
                 painter.drawText(row_area, lc_flags,
