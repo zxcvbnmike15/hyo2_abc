@@ -18,7 +18,7 @@ class NOAASupport:
 
     media = os.path.join(os.path.dirname(__file__), "media")
     caris_root = "C:\\CARIS"
-    support_version = "2020.3"
+    support_version = "2021.1"
 
     @classmethod
     def v_version(cls):
