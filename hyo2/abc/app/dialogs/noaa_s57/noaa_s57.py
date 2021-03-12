@@ -249,8 +249,8 @@ class NOAAS57Dialog(QtWidgets.QDialog):
 
         if not Helper.is_user_admin():
 
-            msg = "CA Tools was not executed as admin!\n\n" \
-                  "Do you want that CA Tools executes the batch file?\n\n" \
+            msg = "The app was not executed as admin!\n\n" \
+                  "Do you want that this app executes the batch file?\n\n" \
                   "You will be prompted for permissions.\n"
 
             # noinspection PyCallByClass,PyArgumentList
@@ -259,11 +259,12 @@ class NOAAS57Dialog(QtWidgets.QDialog):
             if ret == QtWidgets.QMessageBox.No:
 
                 msg = "You have then two alternatives:\n" \
-                      "#1: Close CA Tools and re-open it using the option \"Run as administrator\"\n" \
+                      "#1: Close the app and re-open it using the option \"Run as administrator\"\n" \
                       "or:\n" \
                       "#2: Manually run as administrator the batch file at:\n" \
                       "- %s\n\n" \
-                      "For option #2, do you want that CA Tools open the folder with the batch file?" \
+                      "For option #2, do you want that the appFMG_8880" \
+                      " open the folder with the batch file?" \
                       % (noaa_support.system_batch_file())
 
                 # noinspection PyCallByClass,PyArgumentList
