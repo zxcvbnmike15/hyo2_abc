@@ -31,9 +31,11 @@ class InfoTab(QtWidgets.QMainWindow):
                  with_unh_link: bool = False,
                  with_license: bool = False,
                  with_noaa_57: bool = False,
-                 with_ausseabed_link: bool = False
+                 with_ausseabed_link: bool = False,
+                 with_ocs_email: bool = False
                  ):
         super().__init__(main_win)
+        self._with_ocs_email = with_ocs_email
         self._li = lib_info
         self._ai = app_info
         self.defaul_url = default_url
@@ -58,7 +60,7 @@ class InfoTab(QtWidgets.QMainWindow):
 
         # add about dialog
         self.about_dlg = AboutDialog(lib_info=self._li, app_info=self._ai, parent=self,
-                                     with_locale_tab=True, with_gdal_tab=True)
+                                     with_locale_tab=True, with_gdal_tab=True, with_ocs_email=self._with_ocs_email)
         self.about_dlg.hide()
 
         icon_size = QtCore.QSize(self._ai.app_toolbars_icon_size, self._ai.app_toolbars_icon_size)
@@ -278,6 +280,12 @@ class InfoTab(QtWidgets.QMainWindow):
             <a href=\"mailto:%s?Subject=%s\">%s</a>
             <br><br>""" % (self._ai.app_support_email, self._ai.app_name,
                            self._ai.app_support_email)
+
+            if self._with_ocs_email:
+                txt += """
+                <b>NOAA bugs and feature requests:</b><br>
+                <a href=\"mailto:ocs.qctools@noaa.gov?Subject=%s\">ocs.qctools@noaa.gov</a>
+                <br><br>""" % (self._ai.app_name)
 
             txt += "<b>For comments and ideas for new features:</b><br>\n"
             author_names = self._ai.app_author.split(";")

@@ -15,7 +15,7 @@ logger = logging.getLogger(__name__)
 class AboutDialog(QtWidgets.QDialog):
 
     def __init__(self, lib_info: LibInfo, app_info: AppInfo,
-                 with_locale_tab: bool = False, with_gdal_tab: bool = False,
+                 with_locale_tab: bool = False, with_gdal_tab: bool = False, with_ocs_email: bool = False,
                  parent: QtWidgets.QWidget = None):
         super().__init__(parent)
         self._li = lib_info
@@ -63,7 +63,7 @@ class AboutDialog(QtWidgets.QDialog):
         top_layout.addLayout(right_layout)
         self.tab_widget = QtWidgets.QTabWidget(self)
         self.tab_widget.setTabPosition(QtWidgets.QTabWidget.South)
-        self.general_info_tab = GeneralInfoTab(lib_info=self._li, parent=self)
+        self.general_info_tab = GeneralInfoTab(lib_info=self._li, parent=self, with_ocs_email=with_ocs_email)
         self.tab_widget.addTab(self.general_info_tab, "Overview")
         self.license_tab = LicenseTab(app_info=self._ai, parent=self)
         self.tab_widget.addTab(self.license_tab, "License")

@@ -259,7 +259,7 @@ class Helper:
 
         return path
 
-    def package_info(self, qt_html: bool = False) -> str:
+    def package_info(self, qt_html: bool = False, with_ocs_email: bool = False) -> str:
 
         def style_row(raw_row: str, is_h1: bool = False, is_h2: bool = False) -> str:
             if qt_html:
@@ -314,7 +314,10 @@ class Helper:
         msg += style_row("General Info", is_h2=True)
         msg += style_row("version: %s" % self._li.lib_version)
         msg += style_row("author: %s" % style_mailto(self._li.lib_author, self._li.lib_author_email))
-        msg += style_row("support: %s" % style_mailto(self._li.lib_support_email, self._li.lib_support_email))
+        msg += style_row("general support: %s" % style_mailto(self._li.lib_support_email, self._li.lib_support_email))
+        if with_ocs_email:
+            msg += style_row(
+                "NOAA support: %s" % style_mailto("ocs.qctools@noaa.gov", "ocs.qctools@noaa.gov"))
         msg += style_row("website: %s" % style_url(self._li.lib_url, self._li.lib_url))
         msg += style_row("license: %s" % style_url(self._li.lib_license, self._li.lib_license_url))
 
