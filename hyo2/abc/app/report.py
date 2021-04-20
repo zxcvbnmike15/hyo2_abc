@@ -77,16 +77,16 @@ class Report:
         black_pen = QtGui.QPen(QtGui.QColor(30, 30, 30))
         if small:
             big_font = QtGui.QFont("Arial", 9)
-            normal_font = QtGui.QFont("Arial", 6)
+            normal_font = QtGui.QFont("Arial", 5, QtGui.QFont.Light)
             section_font = QtGui.QFont("Arial", 7, QtGui.QFont.Bold)
-            bold_font = QtGui.QFont("Arial", 6, QtGui.QFont.Bold)
-            small_font = QtGui.QFont("Arial", 5)
+            check_font = QtGui.QFont("Arial", 6)
+            small_font = QtGui.QFont("Arial", 4)
         else:
             big_font = QtGui.QFont("Arial", 10)
-            normal_font = QtGui.QFont("Arial", 8)
+            normal_font = QtGui.QFont("Arial", 7, QtGui.QFont.Light)
             section_font = QtGui.QFont("Arial", 9, QtGui.QFont.Bold)
-            bold_font = QtGui.QFont("Arial", 8, QtGui.QFont.Bold)
-            small_font = QtGui.QFont("Arial", 7)
+            check_font = QtGui.QFont("Arial", 8)
+            small_font = QtGui.QFont("Arial", 6)
         lc_flags = QtCore.Qt.AlignLeft | QtCore.Qt.AlignVCenter | QtCore.Qt.TextWordWrap
         cc_flags = QtCore.Qt.AlignCenter | QtCore.Qt.TextWordWrap
 
@@ -286,7 +286,7 @@ class Report:
                 row_area.moveTo(row_area.x(), row_area.y() + row_height)
                 row_counter += 1
                 # write a numbered sections
-                painter.setFont(bold_font)
+                painter.setFont(check_font)
                 painter.drawText(row_area, lc_flags,
                                  "%s.%s. %s" % (alphabet[section_nr], subsection_nr, content_item.rsplit(' ', 1)[0]))
                 painter.setFont(normal_font)
@@ -299,7 +299,7 @@ class Report:
                 row_area.moveTo(row_area.x(), row_area.y() + row_height)
                 row_counter += 1
                 # write a numbered sections
-                painter.setFont(bold_font)
+                painter.setFont(check_font)
                 painter.drawText(row_area, lc_flags,
                                  "%s.%s. %s" % (alphabet[section_nr], subsection_nr, content_item.rsplit(' ', 1)[0]))
                 painter.setFont(normal_font)
