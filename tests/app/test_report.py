@@ -18,6 +18,7 @@ class TestABCLibReport(unittest.TestCase):
     # @unittest.skipIf(platform.system() in ['Linux', ], "It crashes on Linux")
     def test_init(self):
 
+        # noinspection PyArgumentList
         if not QtWidgets.QApplication.instance():
             QtWidgets.QApplication([])
 
