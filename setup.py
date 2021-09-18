@@ -55,16 +55,16 @@ setup(
     ],
     install_requires=[
         "appdirs",
-        "bidict",
-        "cartopy[plotting]",
         "gdal",
-        "matplotlib",
-        "numpy",
-        "psutil",
         "pyproj",
-        "PySide2",
-        "pywin32 ; platform_system=='Windows'"
+        "numpy",
     ],
+    extras_require={
+        "extended": [
+            "psutil",
+            "PySide2",
+            "pywin32 ; ""platform_system=='Windows'"],
+    },
     python_requires='>=3.5',
     entry_points={
         "gui_scripts": [
