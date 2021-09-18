@@ -61,6 +61,8 @@ setup(
     ],
     extras_require={
         "extended": [
+            "bidict",
+            "matplotlib",
             "psutil",
             "PySide2",
             "pywin32 ; ""platform_system=='Windows'"],
