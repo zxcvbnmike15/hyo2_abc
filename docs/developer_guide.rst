@@ -6,4 +6,4 @@ Developer's guide
     :maxdepth: 3
 
     developer_guide_how_to_contribute
-    developer_guide_how_to_build_docs
+    developer_guide_how_to_release
