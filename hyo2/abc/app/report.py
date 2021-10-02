@@ -16,11 +16,42 @@ class Report:
         self.lib_name = lib_name
         self.lib_version = lib_version
         self.records = list()  # list of strings to be converted in human-readable form
+        self.section_nr = 0
+        self.first_section = True
+        self.subsection_nr = 1
+        self.alphabet = list(string.ascii_uppercase)
 
     def __iadd__(self, record: str) -> "Report":
         """Add a record to the existing list of string records"""
         self.records.append(record)
+
+        # tracking section and sub-section
+        last_item = record.split(' ')[-1]
+
+        if last_item == "[SECTION]":  # the string is a section separator
+            if self.first_section:
+                self.first_section = False
+            else:
+                self.section_nr += 1
+            self.subsection_nr = 1
+
+        elif last_item == "[SKIP_SEC]":  # the string is a section separator
+            if self.first_section:
+                self.first_section = False
+            else:
+                self.section_nr += 1
+            self.subsection_nr = 1
+
+        elif last_item == "[CHECK]" or last_item == "[TOTAL]":  # the string is a section separator
+            self.subsection_nr += 1
+
+        elif last_item == "[SKIP_CHK]":  # the string is a section separator
+            self.subsection_nr += 1
+
         return self
+
+    def cur_section(self) -> str:
+        return "%s.%s" % (self.alphabet[self.section_nr], self.subsection_nr - 1)
 
     def display(self) -> None:
         """Print the content of the report on the monitor"""
@@ -184,8 +215,6 @@ class Report:
                                 doc_width - 2*doc_margin - 2*hor_pad, row_height)
         # painter.drawRect(row_area)
 
-        alphabet = list(string.ascii_uppercase)
-
         first_page = True
         for content_item in self.records:
 
@@ -258,7 +287,7 @@ class Report:
                 # write a numbered sections
                 painter.setFont(section_font)
                 painter.drawText(row_area, lc_flags,
-                                 "%s. %s" % (alphabet[section_nr], content_item.rsplit(' ', 1)[0]))
+                                 "%s. %s" % (self.alphabet[section_nr], content_item.rsplit(' ', 1)[0]))
                 painter.setFont(normal_font)
                 subsection_nr = 1
 
@@ -275,7 +304,7 @@ class Report:
                 # write a numbered sections
                 painter.setFont(section_font)
                 painter.drawText(row_area, lc_flags,
-                                 "%s. %s" % (alphabet[section_nr], content_item.rsplit(' ', 1)[0]))
+                                 "%s. %s" % (self.alphabet[section_nr], content_item.rsplit(' ', 1)[0]))
                 painter.setFont(normal_font)
                 subsection_nr = 1
                 if use_colors:
@@ -288,7 +317,7 @@ class Report:
                 # write a numbered sections
                 painter.setFont(check_font)
                 painter.drawText(row_area, lc_flags,
-                                 "%s.%s. %s" % (alphabet[section_nr], subsection_nr, content_item.rsplit(' ', 1)[0]))
+                                 "%s.%s. %s" % (self.alphabet[section_nr], subsection_nr, content_item.rsplit(' ', 1)[0]))
                 painter.setFont(normal_font)
                 subsection_nr += 1
 
@@ -301,7 +330,7 @@ class Report:
                 # write a numbered sections
                 painter.setFont(check_font)
                 painter.drawText(row_area, lc_flags,
-                                 "%s.%s. %s" % (alphabet[section_nr], subsection_nr, content_item.rsplit(' ', 1)[0]))
+                                 "%s.%s. %s" % (self.alphabet[section_nr], subsection_nr, content_item.rsplit(' ', 1)[0]))
                 painter.setFont(normal_font)
                 subsection_nr += 1
                 if use_colors:
