@@ -3,6 +3,7 @@ from datetime import datetime, timedelta, timezone
 import importlib
 import os
 import platform
+import psutil
 import subprocess
 import sys
 import logging
@@ -196,9 +197,14 @@ class Helper:
                     for command_parameter in command_line:
                         if script_name in command_parameter:
                             process_counter += 1
+                            if process_counter > 1:
+                                logger.info("%s already in execution" % script_name)
+
                 # for other Windows versions
                 elif script_name in proc.cmdline():
                     process_counter += 1
+                    if process_counter > 1:
+                        logger.info("%s already in execution" % script_name)
 
             # a process of the list can end itself during the survey
             except psutil.NoSuchProcess:
