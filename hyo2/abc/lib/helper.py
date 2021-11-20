@@ -172,6 +172,42 @@ class Helper:
         return folder
 
     @classmethod
+    def is_script_already_running(cls) -> bool:
+
+        script_name = os.path.basename(sys.argv[0])
+
+        process_counter = 0
+
+        # get a list with the running processes
+        for pid in psutil.pids():
+
+            try:
+                # get the process from id
+                proc = psutil.Process(pid)
+
+                # check if it is an instance of Python
+                if proc.name() != "python.exe":
+                    continue
+
+                # within Python check if the name of the script is being called
+                command_line = proc.cmdline()
+                # for Windows 10
+                if isinstance(command_line, list):
+                    for command_parameter in command_line:
+                        if script_name in command_parameter:
+                            process_counter += 1
+                # for other Windows versions
+                elif script_name in proc.cmdline():
+                    process_counter += 1
+
+            # a process of the list can end itself during the survey
+            except psutil.NoSuchProcess:
+                logger.debug('Skipping process %s' % pid)
+
+        # if the script is already running there will be two instances
+        return process_counter > 1
+
+    @classmethod
     def is_url(cls, value) -> bool:
         if len(value) > 7:
 
