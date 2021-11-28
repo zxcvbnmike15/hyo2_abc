@@ -1,6 +1,7 @@
 import sys
-from PySide2 import QtWidgets, QtGui
+from PySide2 import QtWidgets, QtGui, QtCore
 
+from hyo2.abc.lib.helper import Helper
 from hyo2.abc.lib.lib_info import LibInfo
 from hyo2.abc.app.app_style import AppStyle
 from hyo2.abc.app.app_info import AppInfo
@@ -17,6 +18,18 @@ app.setApplicationName('%s' % app_info.app_name)
 app.setOrganizationName("HydrOffice")
 app.setOrganizationDomain("hydroffice.org")
 app.setStyleSheet(AppStyle.load_stylesheet())
+
+if Helper.is_script_already_running():
+    txt = "The app is already running!"
+    msg_box = QtWidgets.QMessageBox()
+    msg_box.setWindowTitle("Multiple Instances of ABC")
+    msg_box.setIconPixmap(QtGui.QPixmap(app_info.app_icon_path).scaled(QtCore.QSize(36, 36)))
+    msg_box.setText('%s\n\nDo you want to continue? This might create issues.' % txt)
+    msg_box.setStandardButtons(QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
+    msg_box.setDefaultButton(QtWidgets.QMessageBox.No)
+    reply = msg_box.exec_()
+    if reply == QtWidgets.QMessageBox.No:
+        sys.exit(app.exit())
 
 mw = QtWidgets.QMainWindow()
 mw.setObjectName(app_info.app_main_window_object_name)

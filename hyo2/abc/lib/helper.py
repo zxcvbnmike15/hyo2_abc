@@ -173,9 +173,10 @@ class Helper:
         return folder
 
     @classmethod
-    def is_script_already_running(cls) -> bool:
+    def is_script_already_running(cls, python_only: bool = False) -> bool:
 
         script_name = os.path.basename(sys.argv[0])
+        # logger.info("script name: %s" % script_name)
 
         process_counter = 0
 
@@ -186,12 +187,17 @@ class Helper:
                 # get the process from id
                 proc = psutil.Process(pid)
 
-                # check if it is an instance of Python
-                if proc.name() != "python.exe":
+                if python_only:
+                    # check if it is an instance of Python
+                    if proc.name() != "python.exe":
+                        continue
+
+                # check if the name of the script is being called
+                try:
+                    command_line = proc.cmdline()
+                except Exception:
                     continue
 
-                # within Python check if the name of the script is being called
-                command_line = proc.cmdline()
                 # for Windows 10
                 if isinstance(command_line, list):
                     for command_parameter in command_line:

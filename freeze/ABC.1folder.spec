@@ -83,18 +83,19 @@ def collect_folder_data(input_data_folder: str, relative_output_folder: str):
     return data_toc
 
 
-share_folder = os.path.join(python_path(), "Library", "share", "proj")
-output_folder = os.path.join("Library", "share", "proj")
+share_folder = os.path.join(python_path(), "Library", "share")
+output_folder = os.path.join("Library", "share")
 pyproj_data = collect_folder_data(input_data_folder=share_folder, relative_output_folder=output_folder)
 abc_data = collect_pkg_data('hyo2.abc')
+pyside2_data = collect_pkg_data('PySide2')
 
-icon_file = os.path.normpath(os.path.join(os.curdir, 'ABC.ico'))
+icon_file = os.path.normpath(os.path.join(os.getcwd(), 'freeze', 'ABC.ico'))
 if is_darwin:
-    icon_file = os.path.normpath(os.path.join(os.curdir, 'ABC.icns'))
+    icon_file = os.path.normpath(os.path.join(os.getcwd(), 'freeze', 'ABC.icns'))
 
 a = Analysis(['ABC.py'],
              pathex=[],
-             hiddenimports=["PIL", "scipy._lib.messagestream", "pyproj.datadir"],
+             hiddenimports=["PIL", "scipy._lib.messagestream", "PySide2.QtPrintSupport", "pyproj.datadir"],
              excludes=["IPython", "PyQt5", "pandas", "sphinx", "sphinx_rtd_theme", "OpenGL_accelerate",
                        "FixTk", "tcl", "tk", "_tkinter", "tkinter", "Tkinter",
                        "wx"],
@@ -117,6 +118,7 @@ coll = COLLECT(exe,
                a.datas,
                abc_data,
                pyproj_data,
+               pyside2_data,
                strip=None,
                upx=True,
                name='ABC.%s' % abc_version)
