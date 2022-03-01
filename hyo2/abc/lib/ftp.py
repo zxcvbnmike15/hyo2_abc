@@ -6,10 +6,10 @@ import traceback
 
 import logging
 
-log = logging.getLogger(__name__)
+logger = logging.getLogger(__name__)
 
 
-class ProgressBar(object):
+class ProgressBar:
     """ Class used to store the options of a progress bar """
 
     def __init__(self, start_state=0, end_state=10, bar_width=12, bar_fill='+', bar_blank='-',
@@ -117,10 +117,10 @@ class Ftp:
             self.conn.set_pasv(True)
 
         except ftplib.error_perm as e:
-            log.error("FTP error while connecting to %s: %s" % (self.host, e))
+            logger.error("FTP error while connecting to %s: %s" % (self.host, e))
             return
         except socket.error as e:
-            log.error("FTP error while connecting to %s: %s" % (self.host, e))
+            logger.error("FTP error while connecting to %s: %s" % (self.host, e))
             return
 
     def disconnect(self):
@@ -176,7 +176,7 @@ class Ftp:
 
                 unzip_path = os.path.dirname(file_dst)
 
-                log.debug("unzipping %s to %s" % (file_dst, unzip_path))
+                logger.debug("unzipping %s to %s" % (file_dst, unzip_path))
 
                 name_list = z.namelist()
                 progress = None

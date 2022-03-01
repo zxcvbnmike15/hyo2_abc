@@ -58,6 +58,7 @@ setup(
         "gdal",
         "pyproj",
         "numpy",
+        "requests"
     ],
     extras_require={
         "extended": [
